@@ -1,0 +1,74 @@
+import pandas as pd
+import numpy as np
+
+# Read the .json file and call it jobtech_dataset
+jobtech_dataset = pd.read_json('2023.json')
+pd.set_option('display.max_colwidth', None)
+
+# Function for extracting label from columns (reducing lines)
+def extract_label(column):
+    if len(column) > 0:
+        return column[0]['label']
+    else:
+        return None
+
+# Remove all rows where the job posting does not concern Data/IT
+occupation_field_to_keep = {'concept_id': 'apaJ_2ja_LuF', 'label': 'Data/IT', 'legacy_ams_taxonomy_id': '3'}
+jobtech_dataset = jobtech_dataset[jobtech_dataset['occupation_field'] == occupation_field_to_keep]
+
+# Split object columns into new columns
+jobtech_dataset['min_work'] = jobtech_dataset['scope_of_work'].apply(lambda x: x['min'] if isinstance(x, dict) and 'min' in x else np.nan)
+jobtech_dataset['max_work'] = jobtech_dataset['scope_of_work'].apply(lambda x: x['max'] if isinstance(x, dict) and 'max' in x else np.nan)
+jobtech_dataset['organization_number'] = jobtech_dataset['employer'].apply(lambda x: x['organization_number'] if isinstance(x, dict) and 'organization_number' in x else None)
+jobtech_dataset['employer_name'] = jobtech_dataset['employer'].apply(lambda x: x['name'] if isinstance(x, dict) and 'name' in x else None)
+jobtech_dataset['occupation_group_name'] = jobtech_dataset['occupation_group'].apply(lambda x: x['label'] if isinstance(x, dict) and 'label' in x else None)
+jobtech_dataset['occupation_group_id'] = jobtech_dataset['occupation_group'].apply(lambda x: x['legacy_ams_taxonomy_id'] if isinstance(x, dict) and 'legacy_ams_taxonomy_id' in x else None)
+jobtech_dataset['municipality'] = jobtech_dataset['workplace_address'].apply(lambda x: x['municipality'] if isinstance(x, dict) and 'municipality' in x else None)
+jobtech_dataset['region'] = jobtech_dataset['workplace_address'].apply(lambda x: x['region'] if isinstance(x, dict) and 'region' in x else None)
+jobtech_dataset['country'] = jobtech_dataset['workplace_address'].apply(lambda x: x['country'] if isinstance(x, dict) and 'country' in x else None)
+
+competencies = ['skills', 'languages', 'work_experiences', 'education', 'education_level']
+for column in competencies:
+    jobtech_dataset[f'required_{column}'] = jobtech_dataset['must_have'].apply(lambda x: x[column] if column in x else None)
+
+for column in competencies:
+    jobtech_dataset[f'desirable_{column}'] = jobtech_dataset['nice_to_have'].apply(lambda x: x[column] if column in x else None)
+
+# Extract only the important data from a column
+jobtech_dataset['employment_type'] = jobtech_dataset['employment_type'].apply(lambda x: x['label'])
+jobtech_dataset['duration'] = jobtech_dataset['duration'].apply(lambda x: x['label'])
+jobtech_dataset['occupation'] = jobtech_dataset['occupation'].apply(lambda x: x['label'])
+jobtech_dataset['occupation_field'] = jobtech_dataset['occupation_field'].apply(lambda x: x['label'])
+
+for column in competencies:
+    jobtech_dataset[f'required_{column}'] = jobtech_dataset[f'required_{column}'].apply(extract_label)
+
+for column in competencies:
+    jobtech_dataset[f'desirable_{column}'] = jobtech_dataset[f'desirable_{column}'].apply(extract_label)
+
+
+# Convert columns into appropriate data types, skipping non-finite values
+jobtech_dataset['min_work'] = jobtech_dataset['min_work'].apply(lambda x: int(x) if np.isfinite(x) else None)
+jobtech_dataset['max_work'] = jobtech_dataset['max_work'].apply(lambda x: int(x) if np.isfinite(x) else None)
+
+# Drop unnecessary columns
+columns_to_drop = ['external_id', 'webpage_url','logo_url', 'headline', 'application_deadline', 'description', 'salary_type', 'salary_description',
+               'working_hours_type', 'access', 'application_details', 'access_to_own_car', 'driving_license_required', 'driving_license', 
+               'application_contacts', 'publication_date', 'last_publication_date', 'removed', 'removed_date', 'source_type', 'timestamp',
+               'kontaktpersoner', 'annonstextFormaterad', 'scope_of_work', 'employer', 'occupation_group', 'workplace_address', 'must_have', 'nice_to_have']
+jobtech_dataset = jobtech_dataset.drop(columns_to_drop, axis=1)
+
+# Reindex the DataFrame with the new column order
+new_column_order = ['id', 'number_of_vacancies', 'occupation', 'occupation_group_name', 'occupation_group_id', 'occupation_field',
+                     'organization_number', 'employer_name', 'employment_type', 'duration', 'min_work', 'max_work', 'municipality',
+                     'region', 'country', 'experience_required', 'required_work_experiences', 'required_skills', 'required_languages',
+                     'required_education', 'required_education_level', 'desirable_work_experiences', 'desirable_skills', 'desirable_languages',
+                     'desirable_education', 'desirable_education_level', 'annonstext']
+jobtech_dataset = jobtech_dataset.reindex(columns=new_column_order)
+
+#print(jobtech_dataset[['id','required_education_level']].head(100))
+jobtech_dataset.head()
+jobtech_dataset.info()
+
+jobtech_dataset.to_json('jobtech_2023clean.json')
+jobtech_dataset.to_csv('jobtech_2023clean.csv', index=False)
