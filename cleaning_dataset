@@ -71,4 +71,4 @@ jobtech_dataset.head()
 jobtech_dataset.info()
 
 jobtech_dataset.to_json('jobtech_2023clean.json')
-jobtech_dataset.to_csv('jobtech_2023clean.csv', index=False)
+jobtech_dataset.to_csv('jobtech_2023clean.csv')
