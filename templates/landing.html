@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillMatch - Find Your Perfect Job</title>
+    <!-- Add any necessary CSS stylesheets or links to external stylesheets -->
+    <style>
+        /* Add CSS styles here */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px; /* Adjust the height of the container as needed */
+            margin-top: 30px; /* Adjust top margin */
+        }
+
+        .logo-image {
+            width: 900px; /* Adjust the width of the logo image */
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Add your logo and slogan here -->
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="SkillMatch Logo" class="logo-image">
+        </div>
+        <h1>SkillMatch</h1>
+        <p>Find Your Perfect Job</p>
+    </header>
+
+    <main>
+        <!-- Add the content of your landing page here -->
+    </main>
+
+    <footer>
+        <!-- Add any footer content here -->
+    </footer>
+</body>
+</html>
