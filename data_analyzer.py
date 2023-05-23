@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+from collections import Counter
 
 data = pd.read_csv('jobtech_2023clean.csv')
 
@@ -38,7 +39,7 @@ def get_str(data, column_name, search_string):
     for value in filtered_data[column_name].unique():
         print(value)
 
-#Check for string in column, count occurances. Returns count, so call print(count_str(data, column_name, search_string)) to print the count !!!Bugged!!!
+#Check for string in column, count occurances. Returns count, so call print(count_str(data, column_name, search_string)) to print the count.
 def count_str(data, column_name, search_string):
     pattern = fr"(?i)(?<!\S){re.escape(search_string)}(?!\S)"
     filtered_data = data[data[column_name].notna() & data[column_name].str.contains(pattern, regex=True)]
@@ -92,7 +93,33 @@ def count_skills_in_annonstext(data):
         print(f"{i}. Skill: {skill}")
         print(f"   Occurrences: {count}")
 
-#Counts percentafe of occupation postings that contain string
+#Counts how many times each of the programming languages occur in the 'annonstext'
+def count_progsprak_in_annonstext(data):
+    skill_occurrences = {}
+
+    # Iterate over each skill value in the 'required_skills' column
+    for value in data['required_skills'].dropna().unique():
+        # Check if the skill value contains the phrase 'programmeringsspråk'
+        if 'programmeringsspråk' in value.lower():
+            # Extract the skill name (before the comma, if present)
+            skill_name = re.match(r'^([^,]+)(?:,|$)', value.strip()).group(1)
+
+            # Count the occurrences of the skill name in the 'annonstext' column
+            count = count_str(data, 'annonstext', skill_name)
+
+            # Store the skill and count in the dictionary
+            skill_occurrences[skill_name] = count
+
+    # Sort the dictionary by values in descending order
+    sorted_occurrences = sorted(skill_occurrences.items(), key=lambda x: x[1], reverse=True)
+
+    # Print the list of skills and their occurrences
+    print("Skills and their occurrences:")
+    for i, (skill, count) in enumerate(sorted_occurrences, 1):
+        print(f"{i}. Skill: {skill}")
+        print(f"   Occurrences: {count}")
+
+#Counts percentage of occupation postings that contain string
 def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
     occupation_occurrences = {}
 
@@ -127,14 +154,89 @@ def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
         print(f"{i}. Occupation: {occupation}")
         print(f"   {percentage:.2f}% of {count} postings")
 
+#Counts how often a list of strings i found in annonstext
+def count_newlang_in_annonstext(data, languages):
+    skill_occurrences = {}
 
-search_string = 'support'
+    # Iterate over each language in the list
+    for language in languages:
+        # Count the occurrences of the language in the 'annonstext' column
+        count = count_str(data, 'annonstext', language)
+
+        # Store the language and count in the dictionary
+        skill_occurrences[language] = count
+
+    # Sort the dictionary by values in descending order
+    sorted_occurrences = sorted(skill_occurrences.items(), key=lambda x: x[1], reverse=True)
+
+    # Print the list of languages and their occurrences
+    print("Languages and their occurrences:")
+    for i, (language, count) in enumerate(sorted_occurrences, 1):
+        print(f"{i}. Language: {language}")
+        print(f"   Occurrences: {count}")
+
+#Counts the most common words in a column
+def count_common_words(data, column_name, skip_n, top_n):
+    word_counts = Counter()
+
+    # Iterate over each value in the specified column
+    for value in data[column_name].dropna():
+        # Extract words from the value using regex
+        words = re.findall(r'\b\w+\b', value.lower())
+
+        # Update word counts, excluding words with fewer than 4 characters
+        word_counts.update(word for word in words if len(word) >= 4)
+
+    # Get the most common words
+    most_common_words = word_counts.most_common(skip_n + top_n)
+
+    # Skip the top N words
+    skipped_words = most_common_words[skip_n:]
+
+    # Print the skipped words and their frequencies
+    print(f"Skipped {skip_n} common words (with at least 4 characters) in column '{column_name}':")
+    for i, (word, count) in enumerate(skipped_words, start=1):
+        print(f"{i}. Word: {word}")
+        print(f"   Frequency: {count}")
+
+languages = [
+    'Java',
+    'Python',
+    'SQL',
+    'C#',
+    'JavaScript',
+    'C++',
+    'C',
+    'HTML',
+    'PHP',
+    'Erlang',
+    'Java Enterprise Edition',
+    'Java Standard Edition',
+    'CSS',
+    'Ruby',
+    'Swift',
+    'Go',
+    'Rust',
+    'TypeScript',
+    'Kotlin',
+    'Perl',
+    'Shell scripting (e.g., Bash)',
+    'MATLAB',
+    'R'
+]
+
+search_string = ''
 column_name = 'annonstext'
 occupation = 'Backend-utvecklare'
 #print (data.columns)
 #get_col_values(data, column_name)
+#get_str(data,column_name,search_string)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
 #print(count_str(data, column_name, search_string))
 #count_str_per_job(data, search_string, top_n=5)
+#count_str_percentage_per_job(data, search_string, top_n=5, min_postings=50)
 #count_skills_in_annonstext(data)
+#count_progsprak_in_annonstext(data)
+#count_newlang_in_annonstext(data, languages)
+#count_common_words(data, column_name, 0, 20)
