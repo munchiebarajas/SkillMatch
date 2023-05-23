@@ -38,7 +38,7 @@ def get_str(data, column_name, search_string):
     for value in filtered_data[column_name].unique():
         print(value)
 
-#Check for string in column, count occurances. Returns count, so call print(count_str(data, column_name, search_string)) to print the count
+#Check for string in column, count occurances. Returns count, so call print(count_str(data, column_name, search_string)) to print the count !!!Bugged!!!
 def count_str(data, column_name, search_string):
     pattern = fr"(?i)(?<!\S){re.escape(search_string)}(?!\S)"
     filtered_data = data[data[column_name].notna() & data[column_name].str.contains(pattern, regex=True)]
@@ -69,7 +69,7 @@ def count_str_per_job(data, search_string, top_n=5):
         print(f"   Occurrences: {count}")
 
 #Counts how many times each of the skills occur in the 'annonstext'
-def count_skills_per_job(data):
+def count_skills_in_annonstext(data):
     skill_occurrences = {}
 
     # Iterate over each skill value in the 'required_skills' column
@@ -128,13 +128,13 @@ def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
         print(f"   {percentage:.2f}% of {count} postings")
 
 
-search_string = 'språk'
-column_name = 'required_skills'
+search_string = 'support'
+column_name = 'annonstext'
 occupation = 'Backend-utvecklare'
-#count_skills_per_job(data)
-
-get_col_values(data, column_name)
+#print (data.columns)
+#get_col_values(data, column_name)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
 #print(count_str(data, column_name, search_string))
-count_str_percentage_per_job(data, search_string, top_n=5, min_postings = 100)
+#count_str_per_job(data, search_string, top_n=5)
+#count_skills_in_annonstext(data)
