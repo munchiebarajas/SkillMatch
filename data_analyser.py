@@ -29,7 +29,7 @@ def get_col_values(data, column_name):
     value_counts = data[column_name].value_counts()
     print(f"Distinct values in column '{column_name}':")
     for value, count in value_counts.items():
-        print(f"{value}")#: {count}")
+        print(f"{value}",":", f"{count}")
 
 #Check for string in column
 def get_str(data, column_name, search_string):
@@ -92,6 +92,7 @@ def count_skills_per_job(data):
         print(f"{i}. Skill: {skill}")
         print(f"   Occurrences: {count}")
 
+#Counts percentafe of occupation postings that contain string
 def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
     occupation_occurrences = {}
 
@@ -127,12 +128,12 @@ def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
         print(f"   {percentage:.2f}% of {count} postings")
 
 
-search_string = 'python'
+search_string = 'språk'
 column_name = 'required_skills'
 occupation = 'Backend-utvecklare'
 #count_skills_per_job(data)
 
-#get_col_values(data, column_name)
+get_col_values(data, column_name)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
 #print(count_str(data, column_name, search_string))
