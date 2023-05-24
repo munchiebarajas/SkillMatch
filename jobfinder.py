@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 
+
 from questions import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages#, analyze_responses
 
 # Question 1: Choose the occupation groups that interest you
