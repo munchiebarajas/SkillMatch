@@ -111,30 +111,22 @@ def count_skills_in_annonstext(data, additional_skills=None):
 def count_skills_in_annonstext_csv(data, additional_skills=None, output_file='skill_occurrences.csv'):
     skill_occurrences = {}
 
-    # Iterate over each annonstext
-    for annonstext in data['annonstext'].dropna().unique():
-        # Initialize a set to store unique skills in the annonstext
-        unique_skills = set()
+    # Iterate over each skill value in the 'required_skills' column
+    for value in data['required_skills'].dropna().unique():
+        # Extract the skill name (before the comma, if present)
+        skill_name = re.match(r'^([^,]+)(?:,|$)', value.strip()).group(1)
 
-        # Iterate over each skill value in the 'required_skills' column
-        for value in data['required_skills'].dropna().unique():
-            # Extract the skill name (before the comma, if present)
-            skill_name = re.match(r'^([^,]+)(?:,|$)', value.strip()).group(1)
+        # Count the occurrences of the skill name in the 'annonstext' column
+        count = count_str(data, 'annonstext', skill_name)
 
-            # Check if the skill is present in the current annonstext
-            if skill_name.lower() in annonstext.lower():
-                # Add the skill to the set of unique skills
-                unique_skills.add(skill_name)
+        # Store the skill and count in the dictionary
+        skill_occurrences[skill_name] = count
 
-        # Add manually specified additional skills to the set of unique skills
-        if additional_skills:
-            for skill in additional_skills:
-                if skill.lower() in annonstext.lower():
-                    unique_skills.add(skill)
-
-        # Update the skill occurrences dictionary
-        for skill in unique_skills:
-            skill_occurrences[skill] = skill_occurrences.get(skill, 0) + 1
+    # Add manually specified additional skills to the dictionary
+    if additional_skills:
+        for skill in additional_skills:
+            count = count_str(data, 'annonstext', skill)
+            skill_occurrences[skill] = count
 
     # Sort the dictionary by values in descending order
     sorted_occurrences = sorted(skill_occurrences.items(), key=lambda x: x[1], reverse=True)
@@ -146,8 +138,6 @@ def count_skills_in_annonstext_csv(data, additional_skills=None, output_file='sk
         writer.writerows(sorted_occurrences)
 
     print(f"Skill occurrences saved to '{output_file}' file.")
-
-#Counts how many times each of the programming languages occur in the 'annonstext'
 def count_progsprak_in_annonstext(data):
     skill_occurrences = {}
 
@@ -295,3 +285,4 @@ get_col_values(data, column_name)
 #count_progsprak_in_annonstext(data)
 #count_newlang_in_annonstext(data, languages)
 #count_common_words(data, column_name, 0, 20)
+count_skills_in_annonstext_csv(data, additional_skills, )
