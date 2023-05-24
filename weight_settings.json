@@ -1,0 +1,23 @@
+{
+    "question_weights": {
+      "occupation_groups": 1.0,
+      "experience": 1.0,
+      "programming_type": 1.0,
+      "specific_languages": 1.0
+    },
+    "answer_weights": {
+      "occupation_groups": {
+        "selected_occupations": 1.0
+      },
+      "experience": {
+        "work_experience": 1.0,
+        "education_experience": 1.0
+      },
+      "programming_type": {
+        "selected_types": 0.5
+      },
+      "specific_languages": {
+        "selected_languages": 1.0
+      }
+    }
+  }
