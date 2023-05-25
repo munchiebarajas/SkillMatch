@@ -21,35 +21,37 @@ def get_selected_occupation_groups():
         user_input = input("Your choice(s): ").lower()
 
         if user_input == "any":
-            selected_occupations = occupations
-        else:
-            selected_indexes = user_input.split(",")
-            selected_occupations = [occupations[int(index.strip()) - 1] for index in selected_indexes if index.strip().isdigit()]
-
-        print("Selected occupation group(s):")
-        for occupation in selected_occupations:
-            print(occupation)
-
-        confirm = input("Are these your final selections? (yes/no): ").lower()
-        if confirm == "yes":
+            selected_occupation_groups = occupations
             break
 
+        selected_indexes = user_input.split(",")
+        selected_occupation_groups = [occupations[int(index.strip()) - 1] for index in selected_indexes if index.strip().isdigit()]
+
+        if selected_occupation_groups:
+            break
+        else:
+            print("Invalid input. Please try again.")
+
     print("Final selected occupation group(s):")
-    for occupation in selected_occupations:
+    for occupation in selected_occupation_groups:
         print(occupation)
 
-    return selected_occupations
+    return selected_occupation_groups
 
 # Question 2: Do you have any previous working experience in Data/IT?
 def ask_experience():
     while True:
-        user_input = input("Do you have any previous working experience in Data/IT? (yes/no): ").lower()
-        if user_input == "yes":
-            return True
-        elif user_input == "no":
-            return False
-        else:
-            print("Invalid input. Please enter 'yes' or 'no'.")
+        education_input = input("Please rate IT your education level on a scale of 1 to 5 (1 - minimal, 5 - extensive): ")
+        work_input = input("Please rate your IT work experience on a scale of 1 to 5 (1 - minimal, 5 - extensive): ")
+        
+        if education_input.isdigit() and work_input.isdigit():
+            education_experience = int(education_input)
+            work_experience = int(work_input)
+            
+            if 1 <= education_experience <= 5 and 1 <= work_experience <= 5:
+                return education_experience, work_experience
+        
+        print("Invalid input. Please enter a number between 1 and 5.")
 
 # Question 3: What type of programming are you interested in?
 def ask_programming_type():
@@ -73,17 +75,14 @@ def ask_programming_type():
         selected_indexes = user_input.split(",")
         selected_types = [programming_types[int(index.strip())] for index in selected_indexes if index.strip().isdigit()]
 
-        print("Selected programming type(s):")
+        print("Final selected programming type(s):")
         for programming_type in selected_types:
             print(programming_type)
 
-        confirm = input("Are these your final selections? (yes/no): ").lower()
-        if confirm == "yes":
+        if selected_types:
             break
-
-    print("Final selected programming type(s):")
-    for programming_type in selected_types:
-        print(programming_type)
+        else:
+            print("Invalid input. Please try again.")
 
     return selected_types
 

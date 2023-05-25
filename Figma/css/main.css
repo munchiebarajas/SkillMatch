@@ -1,0 +1,309 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add additional styles as needed */
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.v127_92 { /* GRÖNA BAKGRUNDEN */
+  width: 100%;
+  height: 1290px;
+  background: rgba(218,246,231,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v127_93 { /* TOPPLISTA YRKEN VÄNSTER*/
+  width: 444px;
+  height: 421px;
+  background: url("../images/v127_93.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 592px;
+  left: 196px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow: hidden;
+}
+.v127_94 { /* ANTECKNINGSBILDEN */
+  width: 444px;
+  height: 542px;
+  background: url("../images/v127_94.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 120px;
+  left: 679px;
+  overflow: hidden;
+}
+.v127_95 { /* TOPPLISTA HÖGER */
+  width: 444px;
+  height: 421px;
+  background: url("../images/v127_95.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 592px;
+  left: 679px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  overflow: hidden;
+}
+.v127_96 { /* VITA HEADERN */
+  width: 100%;
+  height: 200px;
+  background: rgba(255,255,255,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v127_97 { /* SKILLMATCH LOGO */
+  width: 100%;
+  height: 380px; /* Adjust the height as desired */
+  background: url("../images/v127_97.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain; /* Use "contain" instead of "cover" */
+  opacity: 1;
+  position: absolute;
+  top: -70px; /* Adjust the top value to move the logo down */
+  left: 0px; /* Adjust the left value to move the logo to the right */
+  overflow: hidden;
+}
+.v127_98 { /* VITA RUTAN VÄNSTER flyttas */
+  width: 438px;
+  height: 274px;
+  background: url("../images/v127_98.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 264px;
+  left: 192px;
+  overflow: hidden;
+}
+.v127_99 { /* VITA RUTAN FÖRSVINNER */
+  width: 438px;
+  height: 264px;
+  background: rgba(248,248,248,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.30000001192092896);
+  overflow: hidden;
+}
+.v127_100 { /* TEXTEN RUTAN VÄNSTER */
+  width: 404px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  font-family: Roboto;
+  font-weight: Regular;
+  font-size: 30px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_101 { /* BOTTOM BAR GRUPP */
+  width: 100%;
+  height: 220px;
+  background: url("../images/v127_101.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  opacity: 1;
+  position: absolute;
+  top: 1070px;
+  left: 0px;
+  overflow: hidden;
+}
+.v127_102 {/*BG Bottom Bar*/
+  width: 100%;
+  height: 220px;
+  background: rgba(97,182,135,0.5600000023841858);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.v127_103 {/*Hem*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 77px;
+  left: 1089px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_104 { /*Yrken*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 119px;
+  left: 1089px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_105 { /*Kompetenser*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 157px;
+  left: 1089px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_106 { /*Github*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 157px;
+  left: 190px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_107 { /*Länkar*/
+  width: 78px;
+  height: 15px;
+  background: rgba(0,0,0,1);
+  opacity: 1;
+  position: absolute;
+  top: 36px;
+  left: 1088px;
+}
+.v127_108 { /*Facebook*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 77px;
+  left: 638px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_109 { /*Instagram.com*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 119px;
+  left: 638px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_110 { /* Sergej Onlyfans*/
+  width: 255px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 157px;
+  left: 638px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_111 { /* Sociala Länkar */
+  width: 195px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 21px;
+  left: 638px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_112 { /* Kontakt eller nåt*/
+  width: 164px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 77px;
+  left: 188px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_113 { /* Företaget*/
+  width: 129px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 21px;
+  left: 188px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}
+.v127_114 {/* Om Oss*/
+  width: 90px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 119px;
+  left: 188px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 15px;
+  opacity: 1;
+  text-align: left;
+}
+.v128_107 { /*Hitta ditt drömjobb*/
+  width: 206px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 245px;
+  left: 809px;
+  font-family: Inter;
+  font-weight: Regular;
+  font-size: 24px;
+  opacity: 1;
+  text-align: left;
+}

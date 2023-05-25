@@ -69,7 +69,6 @@ def count_str_per_job(data, search_string, top_n=5):
     for i, (occupation, count) in enumerate(sorted_occurrences[:top_n], 1):
         print(f"{i}. Occupation: {occupation}")
         print(f"   Occurrences: {count}")
-
 #Count how many times each skill is mentioned in the annonstext column (once per entry)
 def count_skills_in_annonstext(data, additional_skills=None):
     skill_occurrences = {}
@@ -138,6 +137,8 @@ def count_skills_in_annonstext_csv(data, additional_skills=None, output_file='sk
         writer.writerows(sorted_occurrences)
 
     print(f"Skill occurrences saved to '{output_file}' file.")
+
+#Count occurance of programspråk in annonstext
 def count_progsprak_in_annonstext(data):
     skill_occurrences = {}
 
@@ -198,7 +199,7 @@ def count_str_percentage_per_job(data, search_string, top_n=5, min_postings=0):
         print(f"{i}. Occupation: {occupation}")
         print(f"   {percentage:.2f}% of {count} postings")
 
-#Counts how often a list of strings i found in annonstext
+#Counts how often a list of strings is found in annonstext
 def count_newlang_in_annonstext(data, languages):
     skill_occurrences = {}
 
@@ -243,6 +244,26 @@ def count_common_words(data, column_name, skip_n, top_n):
         print(f"{i}. Word: {word}")
         print(f"   Frequency: {count}")
 
+def percentage_of_values_per_occupation(data, column_name):
+    occupation_analysis = {}
+
+    # Iterate over each occupation
+    for occupation in data['occupation'].unique():
+        # Filter the data for the current occupation
+        occupation_data = data[data['occupation'] == occupation]
+
+        # Calculate the percentage of each value in the specified column
+        value_counts = occupation_data[column_name].value_counts(normalize=True) * 100
+
+        # Store the occupation and value counts in the dictionary
+        occupation_analysis[occupation] = value_counts
+
+    # Print the analysis results
+    for occupation, analysis in occupation_analysis.items():
+        print(f"Occupation: {occupation}")
+        print(analysis)
+        print('\n')
+
 languages = [
     'Java',
     'Python',
@@ -269,12 +290,12 @@ languages = [
     'R'
 ]
 
-additional_skills = ['CSS']
-search_string = ''
-column_name = 'occupation_group_name'
+additional_skills = ['']
+search_string = 'frontend'
+column_name = 'annonstext'
 occupation = 'Backend-utvecklare'
-print (data.columns)
-get_col_values(data, column_name)
+#print (data.columns)
+#get_col_values(data, column_name)
 #get_str(data,column_name,search_string)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
@@ -285,4 +306,5 @@ get_col_values(data, column_name)
 #count_progsprak_in_annonstext(data)
 #count_newlang_in_annonstext(data, languages)
 #count_common_words(data, column_name, 0, 20)
-count_skills_in_annonstext_csv(data, additional_skills, )
+#count_skills_in_annonstext_csv(data, additional_skills, )
+#percentage_of_values_per_occupation(data, column_name)
