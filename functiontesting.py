@@ -15,19 +15,20 @@ answer_weights = weight_settings.get('answer_weights', {})
 selected_occupation_groups = ['Mjukvaru- och systemutvecklare m.fl.', 'Systemförvaltare m.fl.']
 experience = [1,2]
 programming_type = ['General-Purpose Programming', 'Web Development']
-specific_languages = ['Python', 'CSS', 'C#']
+specific_languages = ['frontend']
 
 
 data = pd.read_csv('jobtech_2023clean.csv')
 
 recommendation = Recommendation(data, selected_occupation_groups, experience, programming_type, specific_languages, question_weights, answer_weights)
-#user_preferences = recommendation.calculate_user_preferences()
-#print(json.dumps(user_preferences, indent=4, ensure_ascii=False))
+user_preferences = recommendation.calculate_user_preferences()
+print(json.dumps(user_preferences, indent=4, ensure_ascii=False))
 occupation_profiles = recommendation.compute_occupation_profiles()
-# Print the first two entries
-count = 0
-for occupation, profile in occupation_profiles.items():
-    print(occupation, ":", profile)
-    count += 1
-    if count == 2:
-        break
+# Print the first entry
+if occupation_profiles:
+    profile = next(iter(occupation_profiles))
+    contents = occupation_profiles[profile]
+    print("Profile:", profile)
+    print("Contents:", contents)
+else:
+    print("No occupation profiles found.")

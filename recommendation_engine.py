@@ -148,7 +148,6 @@ class Recommendation:
         scientific_mathematical_computing_words = ['math', 'statistics', 'simulation']
         not_interested_programming_words = ['programming', 'coding', 'software', 'development']
 
-
         #Creates an entry for each occupation and calls the appropriate functions for them
         occupation_profiles = {}
         for occupation in self.data['occupation']:
@@ -161,8 +160,10 @@ class Recommendation:
                     'General-Purpose Programming': compute_word_counts(self.data, occupation, general_purpose_programming_words) / occupation_entries,
                     'Databases and Data Manipulation': compute_word_counts(self.data, occupation, databases_data_manipulation_words) / occupation_entries,
                     'Scientific and Mathematical Computing': compute_word_counts(self.data, occupation, scientific_mathematical_computing_words) / occupation_entries,
-                    'Not interested in programming': compute_word_counts(self.data, occupation, not_interested_programming_words) / occupation_entries
+                    'Not interested in programming': compute_word_counts(self.data, occupation, not_interested_programming_words) / occupation_entries,
+                    'Specific Languages': compute_word_counts(self.data, occupation, self.specific_languages)/occupation_entries
                 }
+                
                 occupation_profiles[occupation] = profile
 
         return occupation_profiles

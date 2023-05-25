@@ -291,8 +291,8 @@ languages = [
 ]
 
 additional_skills = ['']
-search_string = 'facebook'
-column_name = 'occupation_group_name'
+search_string = 'frontend'
+column_name = 'annonstext'
 occupation = 'Backend-utvecklare'
 #print (data.columns)
 #get_col_values(data, column_name)
