@@ -146,10 +146,10 @@ class Recommendation:
         #Word lists for matching
         web_development_words = ['html','css','javascript','front-end','frontend','user interface','ui','user experience','ux','användarupplevelse','design','web','website',
             'hemsida','web application','web applications','seo','e-commerce','wordpress','google','Facebook']
-        general_purpose_programming_words = ['java', 'python', 'c++', 'ruby']
-        databases_data_manipulation_words = ['sql', 'database', 'query', 'data']
+        general_purpose_programming_words = ['java', 'python', 'c++', 'ruby', 'Software development', 'mjukvaruutveckling', 'problem solving', 'problemlösning', 'Version control', 'ui', 'ux', 'ai', 'programming', 'coding', 'software', 'development']
+        databases_data_manipulation_words = ['sql', 'database', 'query', 'data', 'update', 'uppdatera','databas', 'Data analysis', 'datanalys', 'ETL' ]
         scientific_mathematical_computing_words = ['math', 'statistics', 'simulation']
-        not_interested_programming_words = ['programming', 'coding', 'software', 'development']
+        not_interested_programming_words = ['programming', 'coding', 'software', 'development', 'java', 'python', 'c++', 'ruby', 'Software development', 'mjukvaruutveckling', 'problem solving', 'problemlösning', 'Version control', 'ui', 'ux', 'ai']
 
         #Creates an entry for each occupation and calls the appropriate functions for them
         occupation_profiles = {}
