@@ -44,6 +44,18 @@
             margin: 20px;
             max-width: 600px;
             width: 80%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        .question-container {
+            background-color: #eaf2e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 80%;
         }
 
         .question {
@@ -54,6 +66,7 @@
 
         .answer-option {
             font-size: 16px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -64,10 +77,12 @@
     </div>
 
     <div class="container">
-        <div class="question-box">
+        <div class="question-container">
             <div class="question">
                 Which occupation group/groups are you interested in homie?
             </div>
+        </div>
+        <div class="question-box">
             <label><input type="checkbox" name="color" value="red" class="answer-option"> BBBBEKNISH</label>
             <label><input type="checkbox" name="color" value="blue" class="answer-option"> Knarkis</label>
             <label><input type="checkbox" name="color" value="green" class="answer-option"> Urban Uslings Udda
@@ -89,7 +104,6 @@
         </div>
     </div>
     <a class="button" href="fragar2.html">Go to Question Page</a>
-</body>
 </body>
 
 </html>
