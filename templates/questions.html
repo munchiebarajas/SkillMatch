@@ -11,28 +11,34 @@
         <img class="logo" src="{{ url_for('static', filename='skillmatchlogo.png') }}" alt="Logo">
     </div>
 
-    <form action="/recommendation" method="POST">
-        <div class="container">
-            <div class="question-box">
-                <div class="question">
-                    Which occupation group/groups are you interested in homie?
-                </div>
-                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> Mjukvaru- och systemutvecklare m.fl.</label>
-                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Systemanalytiker och IT-arkitekter m.fl.</label>
-                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Supporttekniker, IT</label>
-                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Drifttekniker, IT</label>
-                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> Systemtestare och testledare</label>
-                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Systemförvaltare m.fl.</label>
-                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Systemadministratörer</label>
-                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Övriga IT-specialister</label>
-                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> IT-säkerhetsspecialister</label>
-                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Nätverks- och systemtekniker m.fl.</label>
-                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Webbmaster och webbadministratörer</label>
-                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Utvecklare inom spel och digitala media</label>
+    <div class="container">
+        <div class="question-container">
+            <div class="question">
+                Which occupation group/groups are you interested in homie?
             </div>
         </div>
-        <input type="submit" value="Continue">
-    </form>
+        <form action="/questions2.html" method="GET">
+            <div class="question-box">
+                <div class="column">
+                    <label><input type="checkbox" name="occupation_group" value="Mjukvaru- och systemutvecklare m.fl." class="answer-option"> Mjukvaru- och systemutvecklare m.fl.</label>
+                    <label><input type="checkbox" name="occupation_group" value="Systemanalytiker och IT-arkitekter m.fl." class="answer-option"> Systemanalytiker och IT-arkitekter m.fl.</label>
+                    <label><input type="checkbox" name="occupation_group" value="Supporttekniker, IT" class="answer-option"> Supporttekniker, IT</label>
+                    <label><input type="checkbox" name="occupation_group" value="Drifttekniker, IT" class="answer-option"> Drifttekniker, IT</label>
+                    <label><input type="checkbox" name="occupation_group" value="Systemtestare och testledare" class="answer-option"> Systemtestare och testledare</label>
+                    <label><input type="checkbox" name="occupation_group" value="Systemförvaltare m.fl." class="answer-option"> Systemförvaltare m.fl.</label>
+                </div>
+                <div class="column">
+                    <label><input type="checkbox" name="occupation_group" value="Systemadministratörer" class="answer-option"> Systemadministratörer</label>
+                    <label><input type="checkbox" name="occupation_group" value="Övriga IT-specialister" class="answer-option"> Övriga IT-specialister</label>
+                    <label><input type="checkbox" name="occupation_group" value="IT-säkerhetsspecialister" class="answer-option"> IT-säkerhetsspecialister</label>
+                    <label><input type="checkbox" name="occupation_group" value="Nätverks- och systemtekniker m.fl." class="answer-option"> Nätverks- och systemtekniker m.fl.</label>
+                    <label><input type="checkbox" name="occupation_group" value="Webbmaster och webbadministratörer" class="answer-option"> Webbmaster och webbadministratörer</label>
+                    <label><input type="checkbox" name="occupation_group" value="Utvecklare inom spel och digitala media" class="answer-option"> Utvecklare inom spel och digitala media</label>
+                </div>
+            </div>
+            <input type="submit" value="Continue">
+        </form>
+    </div>
 </body>
 
 </html>
