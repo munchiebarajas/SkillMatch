@@ -5,9 +5,11 @@ import numpy as np
 from questions import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages
 
 class RecommendationEngine:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self):
+        self.data = None
 
+    def load_data(self):
+        self.data = pd.read_csv('jobtech_2023clean.csv')
     def create_recommendation(self):
         # Load question and answer weights from the JSON file
         with open('weight_settings.json') as file:

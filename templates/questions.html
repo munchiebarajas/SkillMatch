@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Frågeställning</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='questions.css') }}">
+</head>
+
+<body>
+    <div class="logo-container">
+        <img class="logo" src="{{ url_for('static', filename='skillmatchlogo.png') }}" alt="Logo">
+    </div>
+
+    <div class="container">
+        <div class="question-box">
+            <div class="question">
+                Which occupation group/groups are you interested in homie?
+            </div>
+            <label><input type="checkbox" name="color" value="red" class="answer-option"> BBBBEKNISH</label>
+            <label><input type="checkbox" name="color" value="blue" class="answer-option"> Knarkis</label>
+            <label><input type="checkbox" name="color" value="green" class="answer-option"> Urban Uslings Udda
+                Ungar</label>
+            <label><input type="checkbox" name="color" value="yellow" class="answer-option"> Hockeymålvakt i
+                Eritrea</label>
+        </div>
+    </div>
+</body>
+
+</html>
