@@ -20,12 +20,11 @@ def questions():
 @app.route('/questions2.html', methods=['GET', 'POST'])
 def questions2():
     if request.method == 'POST':
-        # Handle the form submission or any logic specific to questions2.html
-        # You can access form data using request.form.getlist() or request.form['field_name']
-        return redirect(url_for('recommendation'))  # Redirect to the next page after form submission
+        selected_occupation_groups = request.form.getlist('occupation_group')
+        return redirect(url_for('recommendation', occupation_groups=selected_occupation_groups))
     return render_template('questions2.html')
 
-@app.route('/recommendation', methods=['GET'])
+@app.route('/recommendation', methods=['GET', 'POST'])
 def recommendation():
     occupation_groups = request.args.getlist('occupation_groups')
     # Pass the occupation groups to the recommendation engine
