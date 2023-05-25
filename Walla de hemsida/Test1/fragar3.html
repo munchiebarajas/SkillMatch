@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            background-image: url('bakgrund.jpeg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #08917a;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .logo {
+            max-width: 800px;
+            height: auto;
+        }
+
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f2f2f2;
+        }
+
+        select {
+            margin-bottom: 10px;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-container">
+        <img class="logo" src="skillmatchlogo.png" alt="Logo">
+    </div>
+
+    <div class="container">
+        <h2>Question 1: Select an option</h2>
+        <select id="question1">
+            <option value="Jobb1">Jobb1</option>
+            <option value="Jobb2">Jobb2</option>
+            <option value="Jobb3">Jobb3</option>
+            <option value="Jobb4">Jobb4</option>
+            <option value="Jobb5">Jobb5</option>
+            <option value="Jobb6">Jobb6</option>
+            <option value="Jobb7">Jobb7</option>
+            <option value="Jobb8">Jobb8</option>
+            <option value="Jobb9">Jobb9</option>
+            <option value="Jobb10">Jobb10</option>
+        </select>
+
+        <div class="box">
+            <h2>Occupations</h2>
+            <p class="result" id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        const occupationData = [
+            { occupation: 'Programmerare, webbspel', vacancies: 6, value: 'Jobb1' },
+            { occupation: 'Dispatcher', vacancies: 8, value: 'Jobb2' },
+            { occupation: 'Nätverkskonstruktör', vacancies: 9, value: 'Jobb3' },
+            { occupation: 'PC-koordinator', vacancies: 9, value: 'Jobb4' },
+            { occupation: 'Speltestare', vacancies: 10, value: 'Jobb5' },
+            { occupation: 'GIS-utvecklare', vacancies: 12, value: 'Jobb6' },
+            { occupation: 'Databasdesigner', vacancies: 13, value: 'Jobb7' },
+            { occupation: 'Dataoperatör', vacancies: 13, value: 'Jobb8' },
+            { occupation: 'Nätverksansvarig', vacancies: 13, value: 'Jobb9' },
+            { occupation: 'Datorlingvist/Datalingvist', vacancies: 14, value: 'Jobb10' },
+            { occupation: 'Användbarhetsexpert', vacancies: 15, value: 'Jobb1' },
+            { occupation: 'Programmerare, onlinespel', vacancies: 15, value: 'Jobb2' },
+            { occupation: 'Webmaster', vacancies: 17, value: 'Jobb3' },
+            { occupation: 'Configuration Manager/CM', vacancies: 18, value: 'Jobb4' },
+            { occupation: 'Programmerare, konsolspel', vacancies: 21, value: 'Jobb5' },
+            { occupation: 'Webbtekniker', vacancies: 21, value: 'Jobb6' },
+            { occupation: 'Programmerare, mobilspel', vacancies: 23, value: 'Jobb7' },
+            { occupation: 'Programmerare, PC-spel', vacancies: 24, value: 'Jobb8' },
+            { occupation: 'IT-metodansvarig', vacancies: 26, value: 'Jobb9' },
+            { occupation: 'Metodanalytiker, IT', vacancies: 26, value: 'Jobb10' },
+            { occupation: 'Kommunikationstekniker', vacancies: 37, value: 'Jobb1' },
+            { occupation: 'IT-forensiker', vacancies: 38, value: 'Jobb2' },
+            { occupation: 'Interaktionsdesigner', vacancies: 43, value: 'Jobb3' },
+            { occupation: 'IT-utredare', vacancies: 44, value: 'Jobb4' },
+            { occupation: 'Data Warehouse specialist', vacancies: 50, value: 'Jobb5' },
+            { occupation: 'Databastekniker', vacancies: 55, value: 'Jobb6' },
+            { occupation: 'IT-säkerhetschef', vacancies: 56, value: 'Jobb7' },
+            { occupation: 'Nätverksadministratör', vacancies: 56, value: 'Jobb8' },
+            { occupation: 'Nätverksoperatör', vacancies: 56, value: 'Jobb9' },
+            { occupation: 'Infrastrukturarkitekt', vacancies: 61, value: 'Jobb10' },
+            { occupation: 'Driftledare, IT', vacancies: 64, value: 'Jobb1' },
+            { occupation: 'Användbarhetsdesigner', vacancies: 66, value: 'Jobb2' },
+            { occupation: 'Webbansvarig/Webbstrateg', vacancies: 77, value: 'Jobb3' },
+            { occupation: 'Processansvarig, ITIL', vacancies: 84, value: 'Jobb4' },
+            { occupation: 'Enterprise Architect', vacancies: 89, value: 'Jobb5' },
+            { occupation: 'Forskare, IT', vacancies: 93, value: 'Jobb6' },
+            { occupation: 'Säkerhetsadministratör, IT', vacancies: 103, value: 'Jobb7' },
+            { occupation: 'Datasäkerhetsansvarig', vacancies: 111, value: 'Jobb8' },
+            { occupation: 'Kravanalytiker', vacancies: 111, value: 'Jobb9' },
+            { occupation: 'Databasadministratör', vacancies: 113, value: 'Jobb10' },
+            { occupation: 'Systemarkitekt', vacancies: 117, value: 'Jobb1' },
+            { occupation: 'Systemdesigner', vacancies: 124, value: 'Jobb2' },
+            { occupation: 'Applikationskonsult', vacancies: 140, value: 'Jobb3' },
+            { occupation: 'Säkerhetsansvarig, IT', vacancies: 142, value: 'Jobb4' },
+            { occupation: 'IT-samordnare', vacancies: 164, value: 'Jobb5' },
+            { occupation: 'Säkerhetsanalytiker, IT', vacancies: 165, value: 'Jobb6' },
+            { occupation: 'Systemansvarig', vacancies: 177, value: 'Jobb7' },
+            { occupation: 'Verksamhetskonsult, IT', vacancies: 202, value: 'Jobb8' },
+            { occupation: 'Testledare', vacancies: 215, value: 'Jobb9' },
+            { occupation: 'Applikationsutvecklare/Apputvecklare', vacancies: 242, value: 'Jobb10' },
+            { occupation: 'Databasutvecklare', vacancies: 253, value: 'Jobb1' },
+            { occupation: 'Drifttekniker, data', vacancies: 273, value: 'Jobb2' },
+            { occupation: 'Systemanalytiker/Systemutredare', vacancies: 334, value: 'Jobb3' },
+            { occupation: 'IT-strateg', vacancies: 340, value: 'Jobb4' },
+            { occupation: 'Nätverkstekniker', vacancies: 411, value: 'Jobb5' },
+            { occupation: 'Systemförvaltare', vacancies: 415, value: 'Jobb6' },
+            { occupation: 'Systemadministratör', vacancies: 467, value: 'Jobb7' },
+            { occupation: 'Civilingenjör, systemutveckling', vacancies: 469, value: 'Jobb8' },
+            { occupation: 'Affärskonsult, IT', vacancies: 543, value: 'Jobb9' },
+            { occupation: 'Backend-utvecklare', vacancies: 712, value: 'Jobb10' },
+            { occupation: 'Frontend-utvecklare', vacancies: 726, value: 'Jobb1' },
+            { occupation: 'Systemtestare', vacancies: 840, value: 'Jobb2' },
+            { occupation: 'IT-arkitekt/Lösningsarkitekt', vacancies: 842, value: 'Jobb3' },
+            { occupation: 'IT-tekniker/Datatekniker', vacancies: 1141, value: 'Jobb4' },
+            { occupation: 'Projektledare, IT', vacancies: 1144, value: 'Jobb5' },
+            { occupation: 'Helpdesktekniker/Supporttekniker', vacancies: 2280, value: 'Jobb6' },
+            { occupation: 'Mjukvaruutvecklare', vacancies: 2403, value: 'Jobb7' },
+            { occupation: 'Systemutvecklare/Programmerare', vacancies: 4814, value: 'Jobb8' },
+        ];
+
+        const question1 = document.getElementById('question1');
+        const result = document.getElementById('result');
+
+
+        const options = question1.getElementsByTagName('option');
+        const optionValues = Array.from(options).map((option) => option.value);
+        const occupationMap = {};
+
+        occupationData.forEach((occupation, index) => {
+            occupationMap[occupation.occupation] = optionValues[index % optionValues.length];
+        });
+
+
+        question1.addEventListener('change', () => {
+            const selectedOption = question1.value;
+            const selectedOccupations = occupationData.filter(
+                (occupation) => occupationMap[occupation.occupation] === selectedOption
+            );
+
+            if (selectedOccupations.length > 0) {
+
+                selectedOccupations.sort((a, b) => b.vacancies - a.vacancies);
+
+
+                let resultHTML = '';
+                selectedOccupations.forEach((occupation) => {
+                    resultHTML += `<p>${occupation.occupation} - ${occupation.vacancies} vacancies</p>`;
+                });
+
+                result.innerHTML = resultHTML;
+            } else {
+                result.innerHTML = 'No occupations found.';
+            }
+        });
+    </script>
+</body>
+
+</html>
