@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>New Page</title>
+    <style>
+        body {
+            background-image: url('bakgrund.jpeg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #08917a;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            /* Added margin-bottom */
+        }
+
+        .logo {
+            max-width: 800px;
+            height: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .box {
+            background-color: #eaf2e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 80%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-box {
+            background-color: #eaf2e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-width: 600px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .result {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logo-container">
+        <img class="logo" src="skillmatchlogo.png" alt="Logo">
+    </div>
+    <div class="box">
+        <p>This is the top box with some text content.</p>
+    </div>
+    <div class="box">
+        <h2>Programming languages</h2>
+        <p class="result" id="result"></p>
+    </div>
+
+    <script>
+        const occupationData = [
+            { occupation: 'Java', value: 'General-Purpose Programming' },
+            { occupation: 'Python', value: 'General-Purpose Programming' },
+            { occupation: 'C#', value: 'General-Purpose Programming' },
+            { occupation: 'TypeScript', value: 'General-Purpose Programming' },
+            { occupation: 'JavaScript', value: 'General-Purpose Programming' },
+            { occupation: 'C++', value: 'General-Purpose Programming' },
+            { occupation: 'Go', value: 'General-Purpose Programming' },
+            { occupation: 'C', value: 'General-Purpose Programming' },
+            { occupation: 'CSS', value: 'Web Development' },
+            { occupation: 'HTML', value: 'Web Development' },
+            { occupation: 'PHP', value: 'Web Development' },
+            { occupation: 'SQL', value: 'Databases and Data Manipulation' },
+            { occupation: 'MATLAB', value: 'Scientific and Mathematical Computing' },
+            { occupation: 'R', value: 'Scientific and Mathematical Computing' },
+        ];
+
+        const result = document.getElementById('result');
+
+        const optionValue = 'General-Purpose Programming'; // Change the option value here if needed
+
+        const selectedOccupations = occupationData.filter(
+            (occupation) => occupation.value === optionValue
+        );
+
+        if (selectedOccupations.length > 0) {
+            selectedOccupations.sort((a, b) => b.vacancies - a.vacancies);
+
+            let resultHTML = '';
+            selectedOccupations.forEach((occupation) => {
+                resultHTML += `<p>${occupation.occupation}</p>`;
+            });
+
+            result.innerHTML = resultHTML;
+        } else {
+            result.innerHTML = 'No occupations found.';
+        }
+    </script>
+    <a class="button" href="Skillmatchweb.html">Go to Question Page</a>
+</body>
+
+</html>
