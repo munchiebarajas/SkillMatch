@@ -14,7 +14,7 @@ def index():
 def questions():
     if request.method == 'POST':
         selected_occupation_groups = request.form.getlist('occupation_group')
-        return redirect(url_for('recommendation', occupation_groups=selected_occupation_groups))
+        return redirect(url_for('questions2'))  # Redirect to questions2.html
     return render_template('questions.html')
 
 @app.route('/questions2.html', methods=['GET', 'POST'])
