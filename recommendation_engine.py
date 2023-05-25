@@ -10,7 +10,7 @@ class RecommendationEngine:
 
     def load_data(self):
         self.data = pd.read_csv('jobtech_2023clean.csv')
-    def create_recommendation(self):
+    def create_recommendation(self, selected_occupation_groups):
         # Load question and answer weights from the JSON file
         with open('weight_settings.json') as file:
             weight_settings = json.load(file)
