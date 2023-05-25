@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
 import re
-
+from flask import request
 from data_analyzer import count_job_postings
 
 data = pd.read_csv('jobtech_2023clean.csv')
-# Question 1: Choose the occupation groups that interest you
+# Question 1: Choose the occupation group that interest you
 def get_selected_occupation_groups():
     occupation_counts = data['occupation_group_name'].value_counts()
     occupations = list(occupation_counts.index)

@@ -291,7 +291,7 @@ languages = [
 ]
 
 additional_skills = ['']
-search_string = 'frontend'
+search_string = 'Algoritm'
 column_name = 'annonstext'
 occupation = 'Backend-utvecklare'
 #print (data.columns)

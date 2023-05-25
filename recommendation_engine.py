@@ -5,9 +5,11 @@ import numpy as np
 from questions import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages
 
 class RecommendationEngine:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self):
+        self.data = None
 
+    def load_data(self):
+        self.data = pd.read_csv('jobtech_2023clean.csv')
     def create_recommendation(self):
         # Load question and answer weights from the JSON file
         with open('weight_settings.json') as file:
@@ -146,10 +148,10 @@ class Recommendation:
         #Word lists for matching
         web_development_words = ['html','css','javascript','front-end','frontend','user interface','ui','user experience','ux','användarupplevelse','design','web','website',
             'hemsida','web application','web applications','seo','e-commerce','wordpress','google','Facebook']
-        general_purpose_programming_words = ['java', 'python', 'c++', 'ruby']
-        databases_data_manipulation_words = ['sql', 'database', 'query', 'data']
-        scientific_mathematical_computing_words = ['math', 'statistics', 'simulation']
-        not_interested_programming_words = ['programming', 'coding', 'software', 'development']
+        general_purpose_programming_words = ['java', 'python', 'c++', 'ruby', 'Software development', 'mjukvaruutveckling', 'problem solving', 'problemlösning', 'Version control', 'ui', 'ux', 'ai', 'programming', 'coding', 'software', 'development']
+        databases_data_manipulation_words = ['sql', 'database', 'query', 'data', 'update', 'uppdatera','databas', 'Data analysis', 'datanalys', 'ETL' ]
+        scientific_mathematical_computing_words = ['math', 'statistics', 'simulation', 'AI', 'Artificial intelligence', 'Machine Learning', 'Algorithm', 'Algoritm', 'statistik', 'Analysis', 'Analys', 'Function', 'Funktion', 'Matematik', 'matte', 'Experiment', 'Data', 'Algebra', 'Research', 'Matrix', 'Probability', 'sannolikhet', 'theory', 'teori']
+        not_interested_programming_words = ['programming', 'coding', 'software', 'development', 'java', 'python', 'c++', 'ruby', 'Software development', 'mjukvaruutveckling', 'problem solving', 'problemlösning', 'Version control', 'ui', 'ux', 'ai']
 
         #Creates an entry for each occupation and calls the appropriate functions for them
         occupation_profiles = {}

@@ -51,3 +51,4 @@ print("Top Matches:")
 for occupation in top_matches:
     score = match_rating[occupation]
     print(f"Occupation: {occupation}, Score: {score}")
+
