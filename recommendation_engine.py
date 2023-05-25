@@ -1,6 +1,7 @@
 import json
 import re
 import pandas as pd
+import numpy as np
 from questions import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages
 
 class RecommendationEngine:
@@ -14,6 +15,7 @@ class RecommendationEngine:
 
         question_weights = weight_settings['question_weights']
         answer_weights = weight_settings['answer_weights']
+        similarity_weights = weight_settings['similarity_weights']
 
         # Preset user inputs (for testing and development)
         selected_occupation_groups = ['Mjukvaru- och systemutvecklare m.fl.']
@@ -36,14 +38,15 @@ class RecommendationEngine:
             programming_type,
             specific_languages,
             question_weights,
-            answer_weights
+            answer_weights,
+            similarity_weights
         )
 
         return recommendation
 
 class Recommendation:
     def __init__(self, data, selected_occupation_groups, experience, programming_type, specific_languages,
-                 question_weights, answer_weights):
+                 question_weights, answer_weights, similarity_weights):
         self.data = data
         self.selected_occupation_groups = selected_occupation_groups
         self.experience = experience
@@ -51,6 +54,7 @@ class Recommendation:
         self.specific_languages = specific_languages
         self.question_weights = question_weights
         self.answer_weights = answer_weights
+        self.similarity_weights = similarity_weights
 
     def run(self):
         # Step 4: Perform recommendation algorithm
@@ -95,8 +99,7 @@ class Recommendation:
         normalized_education_experience = self.experience[1] / max_experience_rating
 
         experience_preferences = {
-            "work_experience": normalized_work_experience * work_experience_weight,
-            "education_experience": normalized_education_experience * education_experience_weight
+            "total_experience": (normalized_work_experience * work_experience_weight) + (normalized_education_experience * education_experience_weight)
         }
         # Add programming type preferences with weights
         programming_type_preferences = {
@@ -169,27 +172,49 @@ class Recommendation:
         return occupation_profiles
 
     def measure_similarity(self, user_preferences, occupation_profiles):
-        similarity_scores = {}  # Create an empty dictionary to store similarity scores
-        
+        similarity_scores = {}
+
+        # Compare user preferences with occupation profiles and adjust the results by the weights
         for occupation, profile in occupation_profiles.items():
-            # Calculate the similarity score between user preferences and each occupation profile
-            # Use appropriate similarity metrics or algorithms to compare the two profiles
-            break# Store the similarity score in the similarity_scores dictionary
-        
+            if profile['occupation_group'] in self.selected_occupation_groups:
+                profile['occupation_group'] = 1.0
+            else: profile['occupation_group'] = 0.2
+            if profile['proportion_experience_required'] <= user_preferences['total_experience']:
+                profile['proportion_experience_required'] = 1.0
+            else:
+                profile['proportion_experience_required'] = (user_preferences['total_experience'] * profile['proportion_experience_required'])
+            experience_similarity_weight = self.similarity_weights["experience_similarity"]
+            experience_similarity = profile['proportion_experience_required'] * experience_similarity_weight
+            # Calculate programming type similarity
+            programming_type_similarity = 0.0
+            for programming_type in self.programming_type:
+                if programming_type in user_preferences and programming_type in profile:
+                    programming_type_similarity = max(programming_type_similarity, profile[programming_type])
+            type_similarity_weight = self.similarity_weights["type_similarity"]
+            type_similarity = programming_type_similarity * type_similarity_weight
+            language_similarity_weight = self.similarity_weights["language_similarity"]
+            language_similarity = profile['Specific Languages'] * language_similarity_weight
+            profile_similarity = (experience_similarity + type_similarity + language_similarity) * profile['occupation_group']
+            similarity_scores[occupation] = profile_similarity
+
         return similarity_scores
 
     def rank_occupations(self, similarity_scores):
         ranked_occupations = []  # Create an empty list to store ranked occupations
         
         # Sort the occupations based on the similarity scores in descending order
+        sorted_scores = sorted(similarity_scores.items(), key=lambda x: x[1], reverse=True)
+        
         # Append the occupations to the ranked_occupations list in the sorted order
+        for occupation, scores in sorted_scores:
+            ranked_occupations.append(occupation)
         
         return ranked_occupations
-
     def get_top_n_recommendations(self, ranked_occupations, n):
         top_n_recommendations = []  # Create an empty list to store the top N recommendations
         
         # Select the top N occupations from the ranked_occupations list
-        # Append the selected occupations to the top_n_recommendations list
+        top_n_recommendations = ranked_occupations[:n]
         
         return top_n_recommendations
+
