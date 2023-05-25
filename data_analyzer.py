@@ -292,7 +292,7 @@ languages = [
 
 additional_skills = ['']
 search_string = 'Algoritm'
-column_name = 'annonstext'
+column_name = 'occupation_group_name'
 occupation = 'Backend-utvecklare'
 #print (data.columns)
 #get_col_values(data, column_name)

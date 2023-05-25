@@ -7,37 +7,8 @@ from data_analyzer import count_job_postings
 data = pd.read_csv('jobtech_2023clean.csv')
 # Question 1: Choose the occupation group that interest you
 def get_selected_occupation_groups():
-    occupation_counts = data['occupation_group_name'].value_counts()
-    occupations = list(occupation_counts.index)
-
-    print("Occupation groups:")
-    for i, occupation in enumerate(occupations, start=1):
-        print(f"{i}. {occupation}")
-
-    while True:
-        print("Enter the number(s) corresponding to your choice(s). Separate multiple choices by commas.")
-        print("Enter 'any' to select all occupation groups.")
-
-        user_input = input("Your choice(s): ").lower()
-
-        if user_input == "any":
-            selected_occupation_groups = occupations
-            break
-
-        selected_indexes = user_input.split(",")
-        selected_occupation_groups = [occupations[int(index.strip()) - 1] for index in selected_indexes if index.strip().isdigit()]
-
-        if selected_occupation_groups:
-            break
-        else:
-            print("Invalid input. Please try again.")
-
-    print("Final selected occupation group(s):")
-    for occupation in selected_occupation_groups:
-        print(occupation)
-
+    selected_occupation_groups = request.form.getlist('occupation_group')
     return selected_occupation_groups
-
 # Question 2: Do you have any previous working experience in Data/IT?
 def ask_experience():
     while True:

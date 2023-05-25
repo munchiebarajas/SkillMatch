@@ -11,19 +11,28 @@
         <img class="logo" src="{{ url_for('static', filename='skillmatchlogo.png') }}" alt="Logo">
     </div>
 
-    <div class="container">
-        <div class="question-box">
-            <div class="question">
-                Which occupation group/groups are you interested in homie?
+    <form action="/recommendation" method="POST">
+        <div class="container">
+            <div class="question-box">
+                <div class="question">
+                    Which occupation group/groups are you interested in homie?
+                </div>
+                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> Mjukvaru- och systemutvecklare m.fl.</label>
+                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Systemanalytiker och IT-arkitekter m.fl.</label>
+                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Supporttekniker, IT</label>
+                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Drifttekniker, IT</label>
+                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> Systemtestare och testledare</label>
+                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Systemförvaltare m.fl.</label>
+                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Systemadministratörer</label>
+                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Övriga IT-specialister</label>
+                <label><input type="checkbox" name="occupation_group" value="group1" class="answer-option"> IT-säkerhetsspecialister</label>
+                <label><input type="checkbox" name="occupation_group" value="group2" class="answer-option"> Nätverks- och systemtekniker m.fl.</label>
+                <label><input type="checkbox" name="occupation_group" value="group3" class="answer-option"> Webbmaster och webbadministratörer</label>
+                <label><input type="checkbox" name="occupation_group" value="group4" class="answer-option"> Utvecklare inom spel och digitala media</label>
             </div>
-            <label><input type="checkbox" name="color" value="red" class="answer-option"> BBBBEKNISH</label>
-            <label><input type="checkbox" name="color" value="blue" class="answer-option"> Knarkis</label>
-            <label><input type="checkbox" name="color" value="green" class="answer-option"> Urban Uslings Udda
-                Ungar</label>
-            <label><input type="checkbox" name="color" value="yellow" class="answer-option"> Hockeymålvakt i
-                Eritrea</label>
         </div>
-    </div>
+        <input type="submit" value="Continue">
+    </form>
 </body>
 
 </html>
