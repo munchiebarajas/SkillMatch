@@ -59,16 +59,34 @@
             background-color: #eaf2e5;
             border-radius: 10px;
             padding: 20px;
+            overflow-y: scroll;
+            /* Added to enable scrolling */
+            max-height: 400px;
+            /* Added to limit the height and enable scrolling */
         }
 
-        .list ol {
-            margin: 0;
-            padding: 0;
+        .list img {
+            width: 100%;
+            /* Added to make the image fill the container */
+            height: auto;
+            /* Maintain the aspect ratio */
         }
 
-        .list ol li {
-            list-style-type: decimal;
-            margin-bottom: 10px;
+        .list::-webkit-scrollbar {
+            width: 8px;
+            /* Width of the scrollbar */
+        }
+
+        .list::-webkit-scrollbar-thumb {
+            background-color: #889d9e;
+            /* Color of the scrollbar thumb */
+            border-radius: 10px;
+        }
+
+        .list::-webkit-scrollbar-track {
+            background-color: #eaf2e5;
+            /* Color of the scrollbar track */
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -91,22 +109,12 @@
         </div>
         <div class="lists-container">
             <div class="list">
-                <ol>
-                    <li>Jobb 1</li>
-                    <li>Jobb 2</li>
-                    <li>Jobb 3</li>
-                    <li>Jobb 4</li>
-                    <li>Jobb 5</li>
-                </ol>
+                <!-- Add your long image here -->
+                <img src="Toppyrken.png" alt="Long Image">
             </div>
             <div class="list">
-                <ol>
-                    <li>Jobb A</li>
-                    <li>Jobb B</li>
-                    <li>Jobb C</li>
-                    <li>Jobb D</li>
-                    <li>Jobb E</li>
-                </ol>
+                <!-- Add your long image here -->
+                <img src="Topprog.png" alt="Long Image">
             </div>
         </div>
     </div>
