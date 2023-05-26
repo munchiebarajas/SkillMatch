@@ -14,10 +14,10 @@
     <div class="container">
         <div class="question-container">
             <div class="question">
-                Which occupation group/groups are you interested in homie?
+                Which occupation group/groups are you interested in?
             </div>
         </div>
-        <form action="/questions2.html" method="GET">
+        <form action="{{ url_for('questions2') }}" method="POST">
             <div class="question-box">
                 <div class="column">
                     <label><input type="checkbox" name="occupation_group" value="Mjukvaru- och systemutvecklare m.fl." class="answer-option"> Mjukvaru- och systemutvecklare m.fl.</label>

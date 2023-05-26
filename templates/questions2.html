@@ -2,8 +2,8 @@
 <html>
 
 <head>
-    <title>Frågor</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='questions.css') }}">
+    <title>Frågeställning</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='questions2.css') }}">
 </head>
 
 <body>
@@ -12,39 +12,30 @@
     </div>
 
     <div class="container">
-        <div class="question-box">
+        <div class="question-container">
             <div class="question">
-                SVÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄR
-            </div>
-            <div class="slider-container">
-                <input type="range" min="1" max="5" value="3" class="slider">
-                <div class="slider-number">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
-                </div>
+                How much experience do you have in the selected occupation group/groups?
             </div>
         </div>
-
-        <div class="question-box">
-            <div class="question">
-                NO CAP
-            </div>
-            <div class="slider-container">
-                <input type="range" min="1" max="5" value="3" class="slider">
-                <div class="slider-number">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>5</span>
+        <form action="{{ url_for('index') }}" method="POST">
+            <div class="question-box">
+                <div class="slider-container">
+                    <input type="range" name="slider1" min="0" max="10" step="1" value="0" class="slider">
+                    <div class="slider-number">
+                        <span>0</span>
+                        <span>10</span>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <input type="range" name="slider2" min="0" max="10" step="1" value="0" class="slider">
+                    <div class="slider-number">
+                        <span>0</span>
+                        <span>10</span>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <a class="button" href="questions3.html">Go to Question Page</a>
+            <input type="submit" value="Continue">
+        </form>
     </div>
 </body>
 
