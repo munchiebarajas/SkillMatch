@@ -88,6 +88,39 @@
             /* Color of the scrollbar track */
             border-radius: 10px;
         }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            max-width: 80%;
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+        }
+
+        a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .next {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .round {
+            border-radius: 50%;
+        }
     </style>
 </head>
 
@@ -99,12 +132,18 @@
     <div class="container">
         <div class="text-boxes">
             <div class="text-box">
-                <h2>Jobboskit</h2>
-                <p>OSV</p>
+                <h2>Det perfekta jobbet för dig
+                </h2>
+                <p>Skillmatch är en innovativ plattform som revolutionerar jobbsökningsprocessen inom IT-branschen..
+                    Fyll enkelt i dina individuella färdigheter och styrkor så löser vår algoritm resten. Tjänsten
+                    baseras på historisk data från Jobtech vilket gör att vi kan skräddarsy dina egenskaper med relevant
+                    yrkesområde inom IT-sektorn.
+                </p>
             </div>
             <div class="text-box">
-                <h2>Walla mer jobb o sånt</h2>
-                <p>Jo jag svär, de mer jobb</p>
+                <h2>Data från det senaste året</h2>
+                <p>I de två listorna nedanför kan man kolla de yrken samt programmeringsspråk som varit mest
+                    eftertraktade det senaste året. Datan kommer från Jobtech.</p>
             </div>
         </div>
         <div class="lists-container">
@@ -119,7 +158,9 @@
         </div>
     </div>
 
-    <a class="button" href="fragar.html">Go to Question Page</a>
+    <div class="button-container">
+        <a href="fragar2.html" class="next" style="margin-left: auto;">Next &raquo;</a>
+    </div>
 </body>
 
 </html>

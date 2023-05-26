@@ -46,9 +46,6 @@
             margin-bottom: 20px;
             max-width: 600px;
             width: 80%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 10px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -67,6 +64,41 @@
         .result {
             font-weight: bold;
         }
+
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+            max-width: 80%;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 10px;
+        }
+
+        .button-container a.previous {
+            background-color: #f1f1f1;
+            color: black;
+        }
+
+        .button-container a.previous:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .button-container a.next {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .button-container a.next:hover {
+            background-color: #0b8e64;
+        }
     </style>
 </head>
 
@@ -75,29 +107,27 @@
         <img class="logo" src="skillmatchlogo.png" alt="Logo">
     </div>
     <div class="box">
-        <p>This is the top box with some text content.</p>
+        <p>Grattis! Här kommer ditt resultat på de yrkena som passar dina val bäst.
+            Lycka till! :) </p>
     </div>
     <div class="box">
-        <h2>Programming languages</h2>
         <p class="result" id="result"></p>
+    </div>
+
+    <div class="button-container">
+        <a href="Skillmatchweb.html" class="previous">&laquo; Previous</a>
+        <a href="fragar2.html" class="next">Next &raquo;</a>
     </div>
 
     <script>
         const occupationData = [
-            { occupation: 'Java', value: 'General-Purpose Programming' },
-            { occupation: 'Python', value: 'General-Purpose Programming' },
-            { occupation: 'C#', value: 'General-Purpose Programming' },
-            { occupation: 'TypeScript', value: 'General-Purpose Programming' },
-            { occupation: 'JavaScript', value: 'General-Purpose Programming' },
-            { occupation: 'C++', value: 'General-Purpose Programming' },
-            { occupation: 'Go', value: 'General-Purpose Programming' },
-            { occupation: 'C', value: 'General-Purpose Programming' },
-            { occupation: 'CSS', value: 'Web Development' },
-            { occupation: 'HTML', value: 'Web Development' },
-            { occupation: 'PHP', value: 'Web Development' },
-            { occupation: 'SQL', value: 'Databases and Data Manipulation' },
-            { occupation: 'MATLAB', value: 'Scientific and Mathematical Computing' },
-            { occupation: 'R', value: 'Scientific and Mathematical Computing' },
+            { occupation: 'Drifttekniker, Data', value: 'General-Purpose Programming' },
+            { occupation: 'Databasutvecklare', value: 'General-Purpose Programming' },
+            { occupation: 'Databasadministratör', value: 'General-Purpose Programming' },
+            { occupation: 'Databassäkerhetsansvarig', value: 'General-Purpose Programming' },
+            { occupation: 'Databastekniker', value: 'General-Purpose Programming' },
+            { occupation: 'Data Warehouse Specialist', value: 'General-Purpose Programming' },
+            { occupation: 'Dataoperatör', value: 'General-Purpose Programming' },
         ];
 
         const result = document.getElementById('result');
@@ -121,7 +151,6 @@
             result.innerHTML = 'No occupations found.';
         }
     </script>
-    <a class="button" href="Skillmatchweb.html">Go to Question Page</a>
 </body>
 
 </html>
