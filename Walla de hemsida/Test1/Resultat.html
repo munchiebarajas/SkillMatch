@@ -68,10 +68,15 @@
         /* Button Styles */
         .button-container {
             display: flex;
-            justify-content: space-between;
-            width: 600px;
-            max-width: 80%;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             margin-top: 20px;
+            margin-bottom: 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
         .button-container a {
@@ -79,11 +84,14 @@
             display: inline-block;
             padding: 8px 16px;
             border-radius: 10px;
+            text-align: center;
         }
 
         .button-container a.previous {
             background-color: #f1f1f1;
             color: black;
+            margin-right: 450px;
+            /* Adjust the margin between the buttons */
         }
 
         .button-container a.previous:hover {
@@ -115,8 +123,8 @@
     </div>
 
     <div class="button-container">
-        <a href="Skillmatchweb.html" class="previous">&laquo; Previous</a>
-        <a href="fragar2.html" class="next">Next &raquo;</a>
+        <a href="fragar3.html" class="previous">&laquo; Previous</a>
+        <a href="Skillmatchweb.html" class="next">Next &raquo;</a>
     </div>
 
     <script>

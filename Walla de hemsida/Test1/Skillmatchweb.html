@@ -33,6 +33,9 @@
             max-width: 800px;
             margin: 0 auto;
             margin-top: 50px;
+            position: relative;
+            padding-bottom: 70px;
+            /* Added padding to accommodate the button */
         }
 
         .text-boxes {
@@ -51,6 +54,8 @@
 
         .lists-container {
             display: flex;
+            margin-bottom: 20px;
+            /* Added margin to create space for the button */
         }
 
         .list {
@@ -90,12 +95,20 @@
         }
 
         .button-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             display: flex;
-            justify-content: space-between;
-            width: 600px;
-            max-width: 80%;
-            margin-top: 20px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: transparent;
+            /* Remove the background color */
+            border: none;
+            /* Remove the border */
         }
+
 
         a {
             text-decoration: none;
@@ -156,11 +169,11 @@
                 <img src="Topprog.png" alt="Long Image">
             </div>
         </div>
+        <div class="button-container">
+            <a href="fragar.html" class="next">Hitta det perfekta jobbet nu! &raquo;</a>
+        </div>
     </div>
 
-    <div class="button-container">
-        <a href="fragar2.html" class="next" style="margin-left: auto;">Next &raquo;</a>
-    </div>
 </body>
 
 </html>

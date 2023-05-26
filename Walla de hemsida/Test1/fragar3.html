@@ -28,39 +28,59 @@
             height: auto;
         }
 
-
         .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f2f2f2;
-        }
-
-        select {
-            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: 50px;
         }
 
         .box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            background-color: white;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            /* Add margin-bottom for separation */
+            background-color: #eaf2e5;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            max-width: 600px;
+            width: 80%;
+            padding-bottom: 30px;
         }
 
-        .result {
+        .question {
+            font-size: 18px;
             font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .slider-container {
+            width: 80%;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .slider {
+            width: 100%;
+        }
+
+        .slider-number {
+            position: absolute;
+            bottom: -20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+
+        .answer-option {
+            font-size: 16px;
         }
 
         /* Button Styles */
         .button-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
+            justify-content: space-between;
+            width: 600px;
+            max-width: 80%;
             margin-top: 20px;
         }
 
@@ -97,26 +117,26 @@
     </div>
 
     <div class="container">
-        <h2>Pick orientation</h2>
-        <select id="question1">
-            <option value="General-Purpose Programming">General-Purpose Programming</option>
-            <option value="Web Development">Web Development</option>
-            <option value="Databases and Data Manipulation">Databases and Data Manipulation</option>
-            <option value="Scientific and Mathematical Computing">Scientific and Mathematical Computing</option>
-            <option value="Not interested in programming">Not interested in programming</option>
-        </select>
-    </div>
-
-    <div class="container">
         <div class="box">
-            <h2>Programming languages</h2>
+            <h2>Välj inriktning</h2>
+            <select id="question1">
+                <option value="General-Purpose Programming">General-Purpose Programming</option>
+                <option value="Web Development">Web Development</option>
+                <option value="Databases and Data Manipulation">Databases and Data Manipulation</option>
+                <option value="Scientific and Mathematical Computing">Scientific and Mathematical Computing</option>
+                <option value="Not interested in programming">Not interested in programming</option>
+            </select>
+        </div>
+
+        <div class="box">
+            <h2>Programmeringsspråk</h2>
             <p class="result" id="result"></p>
         </div>
 
         <!-- Button -->
         <div class="button-container">
-            <a href="fragar2.html" class="previous">&laquo; Previous</a>
-            <a href="Resultat.html" class="next">Next &raquo;</a>
+            <a href="fragar2.html" class="previous" style="margin-right: auto;">&laquo; Previous</a>
+            <a href="Resultat.html" class="next" style="margin-left: auto;">Next &raquo;</a>
         </div>
     </div>
 
