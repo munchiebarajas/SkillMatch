@@ -23,7 +23,7 @@
     "similarity_weights": {
         "group_similarity": 1.0,
         "experience_similarity": 1.0,
-        "type_similarity": 5.0,
-        "language_similarity": 5.0
+        "type_similarity": 3.0,
+        "language_similarity": 3.0
     }
   }

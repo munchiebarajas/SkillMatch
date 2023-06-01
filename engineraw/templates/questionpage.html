@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Recommendation Website</title>
+    <style>
+        /* Styles for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Styles for the banner */
+        .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+        }
+        .logo {
+            max-width: 1200px;
+            height: auto;
+            margin: 0px 0;
+            margin-top: -70px;
+            margin-bottom: -70px;
+        }
+
+        /* Styles for the form container */
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Styles for the form */
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the submit button */
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Styles for the checkbox container */
+        .checkbox-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* Styles for each checkbox item */
+        .checkbox-item {
+            width: 300px;
+            margin: 5px;
+        }
+
+        /* Styles for the row container */
+        .row-container {
+            display: flex;
+            justify-content: space-between;
+            width: 1220px; /* Adjust the width as needed */
+            margin: 10px 0; /* Adjust the vertical margin as needed */
+        }
+
+        /* Styles for the column container */
+        .column-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%; /* Adjust the width as needed */
+            margin: 0 2%; /* Adjust the horizontal margin as needed */
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner section -->
+    <div class="banner">
+        <!-- Logo image -->
+        <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
+    </div>
+
+    <!-- Form container section -->
+    <div class="form-container">
+        <!-- Form -->
+        <form class="input-form" action="/save-data" method="POST">
+            <!-- Question -->
+            <h2>Do you have any specific occupation groups in mind?</h2>
+
+            <!-- Occupation groups checkboxes -->
+            <div class="checkbox-container">
+                <div class="row-container">
+                    <div class="column-container">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group1">
+                            <label for="group1">Mjukvaru- och systemutvecklare m.fl.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group2">
+                            <label for="group2">Systemanalytiker och IT-arkitekter m.fl.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group3">
+                            <label for="group3">Supporttekniker, IT</label>
+                        </div>
+                    </div>
+                    <div class="column-container">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group4">
+                            <label for="group4">Drifttekniker, IT</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group5">
+                            <label for="group5">Systemtestare och testledare</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group6">
+                            <label for="group6">Systemförvaltare m.fl.</label>
+                        </div>
+                    </div>
+                    <div class="column-container">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group7">
+                            <label for="group7">Systemadministratörer</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group8">
+                            <label for="group8">Övriga IT-specialister</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group9">
+                            <label for="group9">IT-säkerhetsspecialister</label>
+                        </div>
+                    </div>
+                    <div class="column-container">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group10">
+                            <label for="group10">Nätverks- och systemtekniker m.fl.</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group11">
+                            <label for="group11">Webbmaster och webbadministratörer</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="occupation" value="group12">
+                            <label for="group12">Utvecklare inom spel och digitala media</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more rows and checkboxes as needed -->
+            </div>
+
+            <!-- Submit button -->
+            <button class="submit-button" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

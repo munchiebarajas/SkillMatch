@@ -291,11 +291,11 @@ languages = [
 ]
 
 additional_skills = ['']
-search_string = 'facebook'
+search_string = 'IT-utredare'
 column_name = 'occupation_group_name'
 occupation = 'Backend-utvecklare'
 #print (data.columns)
-#get_col_values(data, column_name)
+get_col_values(data, column_name)
 #get_str(data,column_name,search_string)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
