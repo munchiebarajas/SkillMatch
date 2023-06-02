@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>SkillMatch</title>
     <style>
@@ -9,7 +10,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Updated alignment */
+            align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
             background-color: #f1f1f1;
@@ -26,6 +27,7 @@
             overflow: hidden;
             width: 100%;
         }
+
         .logo {
             max-width: 1200px;
             height: auto;
@@ -38,8 +40,8 @@
         .box-container {
             margin-top: 40px;
             margin-left: 20px;
-            width: 70%; /* Updated width */
-            max-width: 600px; /* Added max-width */
+            width: 70%;
+            max-width: 600px;
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
@@ -68,8 +70,39 @@
             border-radius: 4px;
             cursor: pointer;
         }
+
+        /* Additional styles for the new boxes */
+        .additional-box-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .additional-box {
+            flex-basis: calc((100% - 40px) / 2);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            height: 300px;
+        }
+
+        .additional-box img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media screen and (max-width: 768px) {
+            .additional-box {
+                flex-basis: 100%;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Banner section -->
     <div class="banner">
@@ -77,16 +110,49 @@
         <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
     </div>
 
-    <!-- Box container section -->
+    <!-- Text boxes section -->
     <div class="box-container">
-        <!-- Box text -->
-        <p class="box-text">Your text goes here</p>
+        <div class="additional-box-container">
+            <!-- First text box -->
+            <div class="additional-box">
+                <!-- Text content for the first box -->
+                <h2>Det perfekta jobbet för dig</h2>
+                <p>Skillmatch är en innovativ plattform som revolutionerar jobbsökningsprocessen inom IT-branschen..
+                    Fyll enkelt i dina individuella färdigheter och styrkor så löser vår algoritm resten. Tjänsten
+                    baseras på historisk data från Jobtech vilket gör att vi kan skräddarsy dina egenskaper med relevant
+                    yrkesområde inom IT-sektorn.
+                </p>
+            </div>
+
+            <!-- Second text box -->
+            <div class="additional-box">
+                <!-- Text content for the second box -->
+                <h2>Data från det senaste året</h2>
+                <p>I de två listorna nedanför kan man kolla de yrken samt programmeringsspråk som varit mest
+                    eftertraktade det senaste året. Datan kommer från Jobtech.</p>
+            </div>
+        </div>
     </div>
 
-    <!-- Button container section -->
+    <!-- Image boxes section -->
+    <div class="additional-box-container">
+        <!-- Third image box -->
+        <div class="additional-box">
+            <!-- Image content for the third box -->
+            <img src="{{ url_for('static', filename='Toppyrken.png') }}" alt="Image 1">
+        </div>
+
+        <!-- Fourth image box -->
+        <div class="additional-box">
+            <!-- Image content for the fourth box -->
+            <img src="{{ url_for('static', filename='Topprog.png') }}" alt="Image 2">
+        </div>
+    </div>
+
+    <!-- Next button -->
     <div class="button-container">
-        <!-- Next button -->
-        <button class="next-button" onclick="location.href='/questionpage'">Next Site</button>
+        <button class="next-button">Nästa</button>
     </div>
 </body>
+
 </html>
