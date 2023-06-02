@@ -1,5 +1,0 @@
-data = pd.read_csv('jobtech_2023clean.csv')
-recommendation_engine = RecommendationEngine(data)
-recommendation = recommendation_engine.create_recommendation()
-recommendations = recommendation.run()
-print(recommendations)

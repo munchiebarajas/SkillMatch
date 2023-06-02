@@ -2,7 +2,6 @@ import json
 import re
 import pandas as pd
 import numpy as np
-#from questionsraw import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages
 
 class RecommendationEngine:
     def __init__(self, data, profiles, preferences):
@@ -19,7 +18,6 @@ class RecommendationEngine:
         answer_weights = weight_settings['answer_weights']
         similarity_weights = weight_settings['similarity_weights']
 
-        
         selected_occupation_groups = self.preferences['occupation_group_name']
         experience = self.preferences['Experience']
         programming_type = self.preferences['programming_type']
@@ -55,19 +53,19 @@ class Recommendation:
 
     def run(self):
         
-        # Step 4.3: Calculate user preferences
+        # Calculate user preferences
         user_preferences = self.calculate_user_preferences()
 
-        # Step 4.4: Compute occupation profiles
+        # Load occupation profiles
         occupation_profiles = self.occupation_profiles
 
-        # Step 4.5: Measure similarity
+        # Measure similarity
         similarity_scores = self.measure_similarity(user_preferences, occupation_profiles)
 
-        # Step 4.6: Rank occupations
+        # Rank occupations
         ranked_occupations = self.rank_occupations(similarity_scores)
 
-        # Step 4.7: Return recommended occupations
+        # Return recommended occupations
         recommended_occupations = self.get_top_n_recommendations(ranked_occupations, similarity_scores, n=5)
         return recommended_occupations
 
@@ -112,7 +110,7 @@ class Recommendation:
 
         return user_preferences
     
-    #Measure the similarity between preferences and occupation profiles
+    # Measure the similarity between preferences and occupation profiles
     def measure_similarity(self, user_preferences, occupation_profiles):
         similarity_scores = {}
         # Compare user preferences with occupation profiles and adjust the results by the weights
@@ -152,7 +150,7 @@ class Recommendation:
 
         return similarity_scores
     
-    #Rank the similarity scores
+    # Rank the similarity scores
     def rank_occupations(self, similarity_scores):
         ranked_occupations = []  # Create an empty list to store ranked occupations
         
@@ -165,7 +163,7 @@ class Recommendation:
         
         return ranked_occupations
     
-    #Get the top N recommendations and their rating
+    # Get the top N recommendations and their rating
     def get_top_n_recommendations(self, ranked_occupations, similarity_scores, n):
         top_n_recommendations = []  # Create an empty list to store the top N recommendations
         

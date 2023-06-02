@@ -27,9 +27,8 @@ weight_mapping = {
     'någon': 1,
     'some': 2,
     'few': 2
-    # Add more mappings as needed
 }
-#preceding_words = ['Vi söker']
+
 #Function to get the % where experience_required is True for each occupation
 def compute_proportion_experience_required(occupation):
     total_entries = len(data[data['occupation'] == occupation])
@@ -83,7 +82,7 @@ def compute_not_interested_programming_score(data, occupation, word_list):
     score = count / job_postings
     return score
 
-#Check how well each occupation matches with the programming types
+# Check how well each occupation matches with the programming types
 def compute_word_counts(data, occupation, word_list):
     occupation_data = data[data['occupation'] == occupation]
     count = 0
@@ -98,7 +97,7 @@ def compute_sp_word_counts(data, occupation, word_list):
         counts[word] = count_str(occupation_data, 'annonstext', word)
     return counts
 
-#Word lists for matching
+# Word lists for matching
 web_development_words = ['html','css','javascript','front-end','frontend','user interface','ui','user experience','ux','användarupplevelse','design','web','website','hemsida','web application','web applications','seo','e-commerce','wordpress','google','Facebook']
 general_purpose_programming_words = ['java', 'python', 'c++', 'ruby', 'Software development', 'mjukvaruutveckling', 'problem solving', 'problemlösning', 'Version control', 'ui', 'ux', 'ai', 'programming', 'coding', 'software', 'development']
 databases_data_manipulation_words = ['sql', 'database', 'query', 'data', 'update', 'uppdatera','databas', 'Data analysis', 'datanalys', 'ETL' ]
@@ -109,9 +108,9 @@ specific_languages = ["Java", "Python", "C#", "TypeScript", "JavaScript", "C++",
 
 
 
-#Creates a dictionary of occupation profiles, storing their values which will be used for matching.
+# Creates a dictionary of occupation profiles, storing their values which will be used for matching.
 def compute_occupation_profiles():
-    #Creates an entry for each occupation and calls the appropriate functions for them
+    # Creates an entry for each occupation and calls the appropriate functions for them
     occupation_profiles = {}
     for occupation in data['occupation']:
         if occupation not in occupation_profiles:

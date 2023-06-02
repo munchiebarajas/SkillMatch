@@ -1,19 +1,22 @@
 import json
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 import pandas as pd
-from recommendation_engineraw import RecommendationEngine
+from recommendation_engine import RecommendationEngine
 
 
 app = Flask(__name__)
 
+#Route to first page
 @app.route('/')
 def index():
     return render_template('index.html')
 
+#Route to first question page
 @app.route('/questionpage')
 def questions_page():
     return render_template('questionpage.html')
 
+#Route to second question page
 @app.route('/questionpage2', methods=['POST'])
 def question_page2():
     # Get the selected occupation_group_name checkboxes
@@ -28,6 +31,7 @@ def question_page2():
         json.dump(data, file, ensure_ascii=False)
     return render_template('questionpage2.html')
 
+#Route to third question page
 @app.route('/questionpage3', methods=['POST'])
 def question_page3():
     # Get the values from the sliders
@@ -43,9 +47,10 @@ def question_page3():
         json.dump(data, file, ensure_ascii=False)
     return render_template('questionpage3.html')
 
+#Route to result, with all the calculations to get the job recommendations
 @app.route('/result', methods=['POST'])
 def result():
-    # Get the email address from the form
+    # Get the programming types and languages from the form
     programming_types = request.form.getlist('programming_type[]')
     specific_languages = request.form.getlist('specific_languages[]')
     # Load existing data from the JSON file
@@ -60,6 +65,7 @@ def result():
 
     dataset = pd.read_csv('jobtech_2023clean.csv')
     profiles = pd.read_csv('occupation_profiles.csv')
+    #Create the engine and recommendation
     engine = RecommendationEngine(dataset, profiles, data)
     recommendation = engine.create_recommendation()
     results = recommendation.run()

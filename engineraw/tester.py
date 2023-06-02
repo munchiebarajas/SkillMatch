@@ -1,6 +1,6 @@
 import json
 import pandas as pd
-from recommendation_engineraw import RecommendationEngine
+from recommendation_engine import RecommendationEngine
 
 # Load data and profiles
 data = pd.read_csv('jobtech_2023clean.csv')
