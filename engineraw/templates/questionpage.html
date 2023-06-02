@@ -101,66 +101,66 @@
     <!-- Form container section -->
     <div class="form-container">
         <!-- Form -->
-        <form class="input-form" action="/save-data" method="POST">
+        <form class="input-form" action="/questionpage2" method="POST">
             <!-- Question -->
-            <h2>Do you have any specific occupation groups in mind?</h2>
+            <h2>Do you have any specific occupation_group_name[] groups in mind?</h2>
 
-            <!-- Occupation groups checkboxes -->
+            <!-- occupation_group_name[] groups checkboxes -->
             <div class="checkbox-container">
                 <div class="row-container">
                     <div class="column-container">
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group1">
+                            <input type="checkbox" name="occupation_group_name[]" value="Mjukvaru- och systemutvecklare m.fl.">
                             <label for="group1">Mjukvaru- och systemutvecklare m.fl.</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group2">
+                            <input type="checkbox" name="occupation_group_name[]" value="Systemanalytiker och IT-arkitekter m.fl.">
                             <label for="group2">Systemanalytiker och IT-arkitekter m.fl.</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group3">
+                            <input type="checkbox" name="occupation_group_name[]" value="Supporttekniker, IT">
                             <label for="group3">Supporttekniker, IT</label>
                         </div>
                     </div>
                     <div class="column-container">
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group4">
+                            <input type="checkbox" name="occupation_group_name[]" value="Drifttekniker, IT">
                             <label for="group4">Drifttekniker, IT</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group5">
+                            <input type="checkbox" name="occupation_group_name[]" value="Systemtestare och testledare">
                             <label for="group5">Systemtestare och testledare</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group6">
+                            <input type="checkbox" name="occupation_group_name[]" value="Systemförvaltare m.fl.">
                             <label for="group6">Systemförvaltare m.fl.</label>
                         </div>
                     </div>
                     <div class="column-container">
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group7">
+                            <input type="checkbox" name="occupation_group_name[]" value="Systemadministratörer">
                             <label for="group7">Systemadministratörer</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group8">
+                            <input type="checkbox" name="occupation_group_name[]" value="Övriga IT-specialister">
                             <label for="group8">Övriga IT-specialister</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group9">
+                            <input type="checkbox" name="occupation_group_name[]" value="IT-säkerhetsspecialister">
                             <label for="group9">IT-säkerhetsspecialister</label>
                         </div>
                     </div>
                     <div class="column-container">
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group10">
+                            <input type="checkbox" name="occupation_group_name[]" value="Nätverks- och systemtekniker m.fl.">
                             <label for="group10">Nätverks- och systemtekniker m.fl.</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group11">
+                            <input type="checkbox" name="occupation_group_name[]" value="Webbmaster och webbadministratörer">
                             <label for="group11">Webbmaster och webbadministratörer</label>
                         </div>
                         <div class="checkbox-item">
-                            <input type="checkbox" name="occupation" value="group12">
+                            <input type="checkbox" name="occupation_group_name[]" value="Utvecklare inom spel och digitala media">
                             <label for="group12">Utvecklare inom spel och digitala media</label>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
             </div>
 
             <!-- Submit button -->
-            <button class="submit-button" type="submit">Submit</button>
+            <input class="submit-button" type="submit" value="Next Question">
         </form>
     </div>
 </body>

@@ -1,5 +1,8 @@
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+import pandas as pd
+from recommendation_engineraw import RecommendationEngine
+
 
 app = Flask(__name__)
 
@@ -11,22 +14,75 @@ def index():
 def questions_page():
     return render_template('questionpage.html')
 
-@app.route('/save-data', methods=['POST'])
-def save_data():
-    name = request.form.get('name')
-    email = request.form.get('email')
+@app.route('/questionpage2', methods=['POST'])
+def question_page2():
+    # Get the selected occupation_group_name checkboxes
+    occupation_group_names = request.form.getlist('occupation_group_name[]')
+    # Load existing data from the JSON file
+    with open('user_preference.json', 'r') as file:
+        data = json.load(file)
+    # Add the new data to the existing dictionary
+    data['occupation_group_name'] = occupation_group_names
+    # Write the updated data to the JSON file
+    with open('user_preference.json', 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False)
+    return render_template('questionpage2.html')
 
-    # Create a dictionary of the form data
-    data = {'Name': name, 'Email': email}
+@app.route('/questionpage3', methods=['POST'])
+def question_page3():
+    # Get the values from the sliders
+    experience = request.form.getlist('Experience[]')
+    experience = [int(exp) for exp in experience]
+    # Load existing data from the JSON file
+    with open('user_preference.json', 'r') as file:
+        data = json.load(file)
+    # Add the new data to the existing dictionary
+    data['Experience'] = experience
+    # Write the updated data to the JSON file
+    with open('user_preference.json', 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False)
+    return render_template('questionpage3.html')
 
-    # Define the JSON file path
-    json_file = 'user_preference.json'  # Replace with your desired file path
+@app.route('/result', methods=['POST'])
+def result():
+    # Get the email address from the form
+    programming_types = request.form.getlist('programming_type[]')
+    specific_languages = request.form.getlist('specific_languages[]')
+    # Load existing data from the JSON file
+    with open('user_preference.json', 'r') as file:
+        data = json.load(file)
+    # Add the new data to the existing dictionary
+    data['programming_type'] = programming_types
+    data['specific_languages'] = specific_languages
+    # Write the updated data to the JSON file
+    with open('user_preference.json', 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False)
+    # Read occupation descriptions from the JSON file
+    with open('occupation_descriptions.json', 'r') as file:
+        occupation_descriptions = json.load(file)
 
-    # Write the data to the JSON file
-    with open(json_file, 'w') as file:
-        json.dump(data, file)
+    dataset = pd.read_csv('jobtech_2023clean.csv')
+    profiles = pd.read_csv('occupation_profiles.csv')
+    engine = RecommendationEngine(dataset, profiles, data)
+    recommendation = engine.create_recommendation()
+    results = recommendation.run()
 
-    return 'Data saved successfully!'
+    selected_job = results[0][0]  # Select the top recommendation by default
+    description = occupation_descriptions.get(selected_job, 'No description available for this job.')
+
+    return render_template('result.html', results=results, description=description)
+
+def get_job_description(results):
+    descriptions = {}
+    with open('occupation_descriptions.json', 'r') as file:
+        descriptions = json.load(file)
+
+    job_descriptions = {}
+    for job, _ in results:
+        if job in descriptions:
+            job_descriptions[job] = descriptions[job]
+
+    return job_descriptions
 
 if __name__ == '__main__':
     app.run()

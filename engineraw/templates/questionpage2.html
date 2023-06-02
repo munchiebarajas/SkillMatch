@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillMatch</title>
+    <style>
+        /* Styles for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Styles for the banner */
+        .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+        }
+        .logo {
+            max-width: 1200px;
+            height: auto;
+            margin: 0px 0;
+            margin-top: -70px;
+            margin-bottom: -70px;
+        }
+
+        /* Styles for the form container */
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Styles for the form */
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the slider container */
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Styles for the slider */
+        .slider {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the slider value */
+        .slider-value {
+            margin-bottom: 5px;
+        }
+
+        /* Styles for the submit button */
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner section -->
+    <div class="banner">
+        <!-- Logo image -->
+        <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
+    </div>
+
+    <!-- Form container section -->
+    <div class="form-container">
+        <!-- Form -->
+        <form class="input-form" action="/questionpage3" method="POST">
+            <!-- Question 1 -->
+            <h2>How many years of IT work experience do you have? (0-5):</h2>
+            <!-- Slider 1 -->
+            <div class="slider-container">
+                <input class="slider" type="range" min="0" max="5" value="0" step="1" name="Experience[]">
+                <span class="slider-value">0</span>
+            </div>
+
+            <!-- Question 2 -->
+            <h2>How many years of IT education have you had? (0-5):</h2>
+            <!-- Slider 2 -->
+            <div class="slider-container">
+                <input class="slider" type="range" min="0" max="5" value="0" step="1" name="Experience[]">
+                <span class="slider-value">0</span>
+            </div>
+
+            <!-- Submit button -->
+            <input class="submit-button" type="submit" value="Next Question">
+        </form>
+    </div>
+
+    <!-- JavaScript to update slider values -->
+    <script>
+        // Get all sliders
+        var sliders = document.querySelectorAll('.slider');
+
+        // Update slider values on input change
+        sliders.forEach(function (slider) {
+            var valueElement = slider.parentElement.querySelector('.slider-value');
+            slider.addEventListener('input', function () {
+                valueElement.textContent = slider.value;
+            });
+        });
+    </script>
+</body>
+</html>

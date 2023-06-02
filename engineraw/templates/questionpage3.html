@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillMatch</title>
+    <style>
+        /* Styles for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Styles for the banner */
+        .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+        }
+        .logo {
+            max-width: 1200px;
+            height: auto;
+            margin: 0px 0;
+            margin-top: -70px;
+            margin-bottom: -70px;
+        }
+
+        /* Styles for the form container */
+        .form-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Styles for the form */
+        .input-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the checkbox container */
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* Styles for the checkbox */
+        .checkbox {
+            margin-bottom: 10px;
+        }
+
+        /* Styles for the submit button */
+        .submit-button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner section -->
+    <div class="banner">
+        <!-- Logo image -->
+        <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
+    </div>
+
+    <!-- Form container section -->
+    <div class="form-container">
+        <!-- Form -->
+        <form class="input-form" action="/result" method="POST">
+            <!-- Programming Types -->
+            <h2>What kind of programming are you interested in?:</h2>
+            <div class="checkbox-container">
+                <label class="checkbox">
+                    <input type="checkbox" name="programming_type[]" value="General-Purpose Programming"> General-Purpose Programming
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="programming_type[]" value="Web Development"> Web Development
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="programming_type[]" value="Databases and Data Manipulation"> Databases and Data Manipulation
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="programming_type[]" value="Scientific and Mathematical Computing"> Scientific and Mathematical Computing
+                </label>
+                <label class="checkbox">
+                    <input type="checkbox" name="programming_type[]" value="Not interested in programming"> Not interested in programming
+                </label>
+            </div>
+
+            <!-- Additional Checkboxes -->
+            <div class="checkbox-container" id="additional-checkboxes">
+                <!-- Checkboxes will be dynamically added here based on selected options -->
+            </div>
+
+            <!-- Submit button -->
+            <input class="submit-button" type="submit" value="Next Question">
+        </form>
+    </div>
+
+    <!-- JavaScript to handle checkbox events -->
+    <script>
+        // Get the checkbox container
+        var checkboxContainer = document.getElementById('additional-checkboxes');
+
+        // Get all the programming type checkboxes
+        var programmingTypeCheckboxes = document.querySelectorAll('input[name="programming_type[]"]');
+
+        // Add event listener to handle checkbox changes
+        programmingTypeCheckboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function (event) {
+                // Clear the previous additional checkboxes
+                checkboxContainer.innerHTML = '';
+
+                // Iterate through all selected programming type checkboxes
+                var selectedProgrammingTypes = Array.from(programmingTypeCheckboxes)
+                    .filter(function (checkbox) {
+                        return checkbox.checked;
+                    })
+                    .map(function (checkbox) {
+                        return checkbox.value;
+                    });
+
+                // Create additional checkboxes based on the selected programming types
+                selectedProgrammingTypes.forEach(function (programmingType) {
+                    switch (programmingType) {
+                        case 'General-Purpose Programming':
+                            addAdditionalCheckboxes(['Java', 'Python', 'C', 'C#', 'C++', 'Go']);
+                            break;
+                        case 'Web Development':
+                            addAdditionalCheckboxes(['CSS', 'HTML', 'PHP', 'TypeScript', 'JavaScript']);
+                            break;
+                        case 'Databases and Data Manipulation':
+                            addAdditionalCheckboxes(['R', 'SQL', 'NoSQL']);
+                            break;
+                        case 'Scientific and Mathematical Computing':
+                            addAdditionalCheckboxes(['Python', 'MATLAB']);
+                            break;
+                        case 'Not interested in programming':
+                            addAdditionalCheckboxes();
+                            break;
+                    }
+                });
+            });
+        });
+
+        // Function to add additional checkboxes
+        function addAdditionalCheckboxes(options) {
+            // Create checkboxes for each option
+            options.forEach(function (option) {
+                var label = document.createElement('label');
+                label.classList.add('checkbox');
+                label.innerHTML = '<input type="checkbox" name="specific_languages[]" value="' + option + '"> ' + option;
+                checkboxContainer.appendChild(label);
+            });
+        }
+    </script>
+</body>
+</html>

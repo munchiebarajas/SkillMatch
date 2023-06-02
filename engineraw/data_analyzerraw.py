@@ -291,15 +291,15 @@ languages = [
 ]
 
 additional_skills = ['']
-search_string = 'IT-utredare'
-column_name = 'occupation_group_name'
+search_string = 'tensorflow'
+column_name = 'occupation'
 occupation = 'Backend-utvecklare'
 #print (data.columns)
 get_col_values(data, column_name)
 #get_str(data,column_name,search_string)
 #total_vac(data)
 #print(count_job_postings(data, occupation))
-#print(count_str(data, column_name, search_string))
+print(count_str(data, column_name, search_string))
 #count_str_per_job(data, search_string, top_n=5)
 #count_str_percentage_per_job(data, search_string, top_n=5, min_postings=50)
 #count_skills_in_annonstext(data)

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SkillMatch</title>
+    <style>
+        /* Styles for the body */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Styles for the banner */
+        .banner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 100%;
+        }
+        .logo {
+            max-width: 1200px;
+            height: auto;
+            margin: 0px 0;
+            margin-top: -70px;
+            margin-bottom: -70px;
+        }
+
+        /* Styles for the results */
+        .results {
+            margin-top: 20px;
+            text-align: center; /* Adjust the position of the results */
+        }
+        .results h1 {
+            color: #333; /* Change the color of the results headline */
+        }
+        .result-item {
+            margin-bottom: 5px;
+            color: #666; /* Change the color of the result items */
+        }
+
+        /* Styles for the job description */
+        .description {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const jobRadios = document.querySelectorAll('input[type="radio"][name="job"]');
+            const descriptionElement = document.querySelector('.description p');
+
+            // Initial description
+            updateJobDescription(jobRadios[0].value);
+
+            // Update description on radio button change
+            jobRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    const selectedJob = event.target.value;
+                    updateJobDescription(selectedJob);
+                });
+            });
+
+            function updateJobDescription(job) {
+                const descriptions = {
+                    'Mjukvaruutvecklare': 'This is the description for Mjukvaruutvecklare.',
+                    'Programmerare, konsolspel': 'This is the description for Programmerare, konsolspel.',
+                    'Systemdesigner': 'This is the description for Systemdesigner.',
+                    'Job Title 4': 'This is the description for Job Title 4.',
+                    'Job Title 5': 'This is the description for Job Title 5.'
+                };
+                const description = descriptions[job] || 'No description available for this job.';
+                descriptionElement.textContent = description;
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Banner section -->
+    <div class="banner">
+        <!-- Logo image -->
+        <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
+    </div>
+
+    <!-- Content -->
+    <div class="results">
+        <h1>Recommendation Results</h1>
+        <form>
+            <ul>
+                {% for result in results %}
+                    <li class="result-item">
+                        <input type="radio" name="job" value="{{ result[0] }}" {% if loop.first %}checked{% endif %}> {{ result[0] }}, {{ '%.2f' % result[1] }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </form>
+    </div>
+
+    <div class="description">
+        <h2>Job Description</h2>
+        <p></p>
+    </div>
+
+</body>
+</html>

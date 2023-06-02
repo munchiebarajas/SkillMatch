@@ -5,10 +5,10 @@ import numpy as np
 #from questionsraw import get_selected_occupation_groups, ask_experience, ask_programming_type, ask_specific_languages
 
 class RecommendationEngine:
-    def __init__(self, data, profiles):
+    def __init__(self, data, profiles, preferences):
         self.data = data
         self.profiles = profiles
-        #self.preferences = preferences
+        self.preferences = preferences
 
     def create_recommendation(self):
         # Load question and answer weights from the JSON file
@@ -20,16 +20,10 @@ class RecommendationEngine:
         similarity_weights = weight_settings['similarity_weights']
 
         
-        selected_occupation_groups = ['Mjukvaru- och systemutvecklare m.fl.']
-        experience = [2, 2]
-        programming_type = ['Web Development', 'General-Purpose Programming']
-        specific_languages = ['Python', 'HTML', 'CSS']
-        '''
-        selected_occupation_groups = get_selected_occupation_groups()
-        experience = ask_experience()
-        programming_type = ask_programming_type()
-        specific_languages = ask_specific_languages(programming_type)
-        '''
+        selected_occupation_groups = self.preferences['occupation_group_name']
+        experience = self.preferences['Experience']
+        programming_type = self.preferences['programming_type']
+        specific_languages = self.preferences['specific_languages']
 
         # Create recommendation object
         recommendation = Recommendation(
@@ -60,14 +54,7 @@ class Recommendation:
         self.similarity_weights = similarity_weights
 
     def run(self):
-        # Step 4: Perform recommendation algorithm
-
-        # Step 4.1: Preprocess the data
-        # ...
-
-        # Step 4.2: Define similarity measures
-        # ...
-
+        
         # Step 4.3: Calculate user preferences
         user_preferences = self.calculate_user_preferences()
 
