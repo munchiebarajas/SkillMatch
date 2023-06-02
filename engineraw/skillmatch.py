@@ -69,7 +69,7 @@ def result():
 
 def get_job_description(results):
     descriptions = {}
-    with open('occupation_descriptions.json', 'r') as file:
+    with open('occupation_descriptions.json', 'r', encoding='utf-8') as file:
         descriptions = json.load(file)
 
     job_descriptions = {}
