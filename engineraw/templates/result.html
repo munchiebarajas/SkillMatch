@@ -37,20 +37,29 @@
         /* Styles for the results */
         .results {
             margin-top: 20px;
-            text-align: center; /* Adjust the position of the results */
+            text-align: center;
         }
         .results h1 {
-            color: #333; /* Change the color of the results headline */
+            color: #333;
         }
         .result-item {
-            margin-bottom: 5px;
-            color: #666; /* Change the color of the result items */
+            margin-bottom: 10px; /* Increase the space between items */
+            color: #666;
+            list-style: none;
+            display: flex; /* Add display flex */
+            align-items: center; /* Align items vertically */
+            justify-content: flex-start; /* Align items to the left */
         }
-
-        /* Styles for the job description */
+        .result-item input[type="radio"] {
+            margin-right: 20px; /* Add margin between the circle and the text */
+        }
+        /* Updated styles for the job description */
         .description {
             margin-top: 20px;
             text-align: center;
+            max-width: 600px; /* Adjust the maximum width of the container */
+            margin-left: auto; /* Align the container to the center */
+            margin-right: auto; /* Align the container to the center */
         }
     </style>
     <script>
@@ -70,14 +79,8 @@
             });
 
             function updateJobDescription(job) {
-                const descriptions = {
-                    'Mjukvaruutvecklare': 'This is the description for Mjukvaruutvecklare.',
-                    'Programmerare, konsolspel': 'This is the description for Programmerare, konsolspel.',
-                    'Systemdesigner': 'This is the description for Systemdesigner.',
-                    'Job Title 4': 'This is the description for Job Title 4.',
-                    'Job Title 5': 'This is the description for Job Title 5.'
-                };
-                const description = descriptions[job] || 'No description available for this job.';
+                const jobDescriptions = JSON.parse('{{ job_descriptions | tojson }}');
+                const description = jobDescriptions[job] || 'No description available for this job.';
                 descriptionElement.textContent = description;
             }
         });
@@ -92,15 +95,15 @@
 
     <!-- Content -->
     <div class="results">
-        <h1>Recommendation Results</h1>
+        <h1>Top Matches based on Your preferences</h1>
         <form>
-            <ul>
+            <ol>
                 {% for result in results %}
                     <li class="result-item">
-                        <input type="radio" name="job" value="{{ result[0] }}" {% if loop.first %}checked{% endif %}> {{ result[0] }}, {{ '%.2f' % result[1] }}
+                    <input type="radio" name="job" value="{{ result[0] }}" {% if loop.first %}checked{% endif %}> {{ loop.index }}. {{ result[0] }} <!-- Display loop index instead of rating -->
                     </li>
                 {% endfor %}
-            </ul>
+            </ol>
         </form>
     </div>
 
@@ -108,6 +111,9 @@
         <h2>Job Description</h2>
         <p></p>
     </div>
+    <!-- Button to go back to the index page -->
+    <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+
 
 </body>
 </html>

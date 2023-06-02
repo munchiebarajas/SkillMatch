@@ -57,20 +57,15 @@ def result():
     # Write the updated data to the JSON file
     with open('user_preference.json', 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False)
-    # Read occupation descriptions from the JSON file
-    with open('occupation_descriptions.json', 'r') as file:
-        occupation_descriptions = json.load(file)
 
     dataset = pd.read_csv('jobtech_2023clean.csv')
     profiles = pd.read_csv('occupation_profiles.csv')
     engine = RecommendationEngine(dataset, profiles, data)
     recommendation = engine.create_recommendation()
     results = recommendation.run()
+    job_descriptions = get_job_description(results)
 
-    selected_job = results[0][0]  # Select the top recommendation by default
-    description = occupation_descriptions.get(selected_job, 'No description available for this job.')
-
-    return render_template('result.html', results=results, description=description)
+    return render_template('result.html', results=results, job_descriptions=job_descriptions)
 
 def get_job_description(results):
     descriptions = {}

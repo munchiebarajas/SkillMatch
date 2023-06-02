@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Recommendation Website</title>
+    <title>SkillMatch</title>
     <style>
         /* Styles for the body */
         body {
@@ -71,6 +71,13 @@
         .checkbox-item {
             width: 300px;
             margin: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Styles for the checkbox input */
+        .checkbox-item input[type="checkbox"] {
+            margin-right: 10px;
         }
 
         /* Styles for the row container */
@@ -103,7 +110,7 @@
         <!-- Form -->
         <form class="input-form" action="/questionpage2" method="POST">
             <!-- Question -->
-            <h2>Do you have any specific occupation_group_name[] groups in mind?</h2>
+            <h2>Do you have any specific occupation groups in mind?</h2>
 
             <!-- occupation_group_name[] groups checkboxes -->
             <div class="checkbox-container">

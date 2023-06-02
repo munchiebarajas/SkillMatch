@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Recommendation Website</title>
+    <title>SkillMatch</title>
     <style>
         /* Styles for the body */
         body {
@@ -9,7 +9,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start; /* Updated alignment */
             justify-content: flex-start;
             min-height: 100vh;
             background-color: #f1f1f1;
@@ -34,6 +34,25 @@
             margin-bottom: -70px;
         }
 
+        /* Styles for the box container */
+        .box-container {
+            margin-top: 40px;
+            margin-left: 20px;
+            width: 70%; /* Updated width */
+            max-width: 600px; /* Added max-width */
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styles for the text inside the box */
+        .box-text {
+            color: #333333;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
         /* Styles for the button container */
         .button-container {
             margin-top: 20px;
@@ -56,6 +75,12 @@
     <div class="banner">
         <!-- Logo image -->
         <img class="logo" src="{{ url_for('static', filename='logobg.png') }}" alt="Logo">
+    </div>
+
+    <!-- Box container section -->
+    <div class="box-container">
+        <!-- Box text -->
+        <p class="box-text">Your text goes here</p>
     </div>
 
     <!-- Button container section -->
