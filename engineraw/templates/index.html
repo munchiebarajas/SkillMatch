@@ -39,13 +39,8 @@
         /* Styles for the box container */
         .box-container {
             margin-top: 40px;
-            margin-left: 20px;
             width: 70%;
             max-width: 600px;
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         /* Styles for the text inside the box */
@@ -74,30 +69,31 @@
         /* Additional styles for the new boxes */
         .additional-box-container {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             margin-top: 20px;
-            margin-bottom: 20px;
         }
 
         .additional-box {
-            flex-basis: calc((100% - 40px) / 2);
             background-color: #ffffff;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
+            margin: 0 10px;
+            width: calc(50% - 20px);
             height: 300px;
+            overflow: auto;
         }
 
         .additional-box img {
             max-width: 100%;
             height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         @media screen and (max-width: 768px) {
             .additional-box {
-                flex-basis: 100%;
+                width: 100%;
             }
         }
     </style>
@@ -132,20 +128,20 @@
                     eftertraktade det senaste året. Datan kommer från Jobtech.</p>
             </div>
         </div>
-    </div>
 
-    <!-- Image boxes section -->
-    <div class="additional-box-container">
-        <!-- Third image box -->
-        <div class="additional-box">
-            <!-- Image content for the third box -->
-            <img src="{{ url_for('static', filename='Toppyrken.png') }}" alt="Image 1">
-        </div>
+        <!-- Image boxes section -->
+        <div class="additional-box-container">
+            <!-- Third image box -->
+            <div class="additional-box">
+                <!-- Image content for the third box -->
+                <img src="{{ url_for('static', filename='Toppyrken.png') }}" alt="Image 1">
+            </div>
 
-        <!-- Fourth image box -->
-        <div class="additional-box">
-            <!-- Image content for the fourth box -->
-            <img src="{{ url_for('static', filename='Topprog.png') }}" alt="Image 2">
+            <!-- Fourth image box -->
+            <div class="additional-box">
+                <!-- Image content for the fourth box -->
+                <img src="{{ url_for('static', filename='Topprog.png') }}" alt="Image 2">
+            </div>
         </div>
     </div>
 
