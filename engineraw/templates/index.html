@@ -39,15 +39,15 @@
         /* Styles for the box container */
         .box-container {
             margin-top: 40px;
-            width: 70%;
-            max-width: 600px;
+            width: 100%;
+            max-width: 1000px;
         }
 
         /* Styles for the text inside the box */
         .box-text {
             color: #333333;
-            font-size: 18px;
-            line-height: 1.5;
+            font-size: 24px;
+            line-height: 1.8;
         }
 
         /* Styles for the button container */
@@ -71,6 +71,7 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            width: 1000px;
         }
 
         .additional-box {
@@ -80,8 +81,9 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             margin: 0 10px;
             width: calc(50% - 20px);
-            height: 300px;
+            height: 250px;
             overflow: auto;
+            position: relative;
         }
 
         .additional-box img {
@@ -112,20 +114,30 @@
             <!-- First text box -->
             <div class="additional-box">
                 <!-- Text content for the first box -->
-                <h2>Det perfekta jobbet för dig</h2>
-                <p>Skillmatch är en innovativ plattform som revolutionerar jobbsökningsprocessen inom IT-branschen..
-                    Fyll enkelt i dina individuella färdigheter och styrkor så löser vår algoritm resten. Tjänsten
-                    baseras på historisk data från Jobtech vilket gör att vi kan skräddarsy dina egenskaper med relevant
-                    yrkesområde inom IT-sektorn.
+                <h2>The perfect job for You!</h2>
+                <p>SkillMatch is an innovative platform that revolutionizes the 
+                    job application process within the IT industry. Simply fill 
+                    in your individual skills and preferences, and our algorithm 
+                    will take care of the rest. The service is based on historical 
+                    data from Jobtech, allowing us to give you job recommendations
+                    tailored to your skills and preferences. This service is
+                    specifically aimed towards students within the IT sector.
                 </p>
+                <!-- Next button -->
+                <div class="button-container">
+                    <a class="next-button" href="/questionpage">Take the Quiz</a>
+                </div>
             </div>
 
             <!-- Second text box -->
             <div class="additional-box">
                 <!-- Text content for the second box -->
-                <h2>Data från det senaste året</h2>
-                <p>I de två listorna nedanför kan man kolla de yrken samt programmeringsspråk som varit mest
-                    eftertraktade det senaste året. Datan kommer från Jobtech.</p>
+                <h2>Data from the last year</h2>
+                <p>Below you can see a representation of some data from the 
+                    last year. The left list contains the number of vacancies
+                    posted for each occupation, and the right list contains
+                    the number of job postings that contained each IT skill.
+                </p>
             </div>
         </div>
 
@@ -143,11 +155,6 @@
                 <img src="{{ url_for('static', filename='Topprog.png') }}" alt="Image 2">
             </div>
         </div>
-    </div>
-
-    <!-- Next button -->
-    <div class="button-container">
-        <button class="next-button">Nästa</button>
     </div>
 </body>
 
