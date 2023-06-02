@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 import pandas as pd
 from recommendation_engine import RecommendationEngine
 
-#Welcome to Skillmatch
+#Skillmatch
 
 app = Flask(__name__)
 
